@@ -88,6 +88,10 @@ public class BinaryTree<T extends Comparable<T>> {
         return list;
     }
     
+    public SLList<T> inOrderTraversal() {
+        return inOrderTraversal(root);
+    }
+    
     private void inOrderTraversalHelper(BTNode<T> startNode, SLList<T> result) {
         if (startNode == null) {
             return;

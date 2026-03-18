@@ -5,12 +5,13 @@
 package dsaca1.datastructures.doublylinkedlist;
 
 import dsaca1.datastructures.LinearListInterface;
+import java.util.Iterator;
 
 /**
  *
  * @author tom
  */
-public class DLList<T extends Comparable<T>> implements LinearListInterface<T> {
+public class DLList<T extends Comparable<T>> implements LinearListInterface<T>, Iterable<T> {
     private DLNode<T> head;
     private DLNode<T> last;
     private DLNode<T> currNode;
@@ -103,4 +104,30 @@ public class DLList<T extends Comparable<T>> implements LinearListInterface<T> {
         }
     }
     
+    @Override
+    public Iterator<T> iterator() {
+        // https://stackoverflow.com/a/5849625/17727765
+
+        Iterator<T> it = new Iterator<T>() {
+            // start from head
+            private DLNode<T> current = head;
+
+            @Override
+            public boolean hasNext() {
+                return current != null;
+            }
+
+            @Override
+            public T next() {
+                if (current == null) {
+                    throw new IndexOutOfBoundsException();
+                }
+                T data = current.getData();
+                current = current.getNext();
+                return data;
+            }
+        };
+
+        return it;
+    }
 }

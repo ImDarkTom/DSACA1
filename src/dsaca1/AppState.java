@@ -6,6 +6,7 @@ package dsaca1;
 
 import dsaca1.datastructures.binarysearchtree.BTNode;
 import dsaca1.datastructures.binarysearchtree.BinaryTree;
+import dsaca1.datastructures.doublylinkedlist.DLList;
 import dsaca1.datastructures.singlylinkedlist.SLList;
 import dsaca1.enums.Diet;
 import dsaca1.models.FaunaSpecies;
@@ -68,7 +69,22 @@ public class AppState {
         
         
         // Green areas
-        greenAreas.add(new GreenArea("Pheonix Park"));
+        DLList<FloraSpecies> floraList = new DLList<>();
+        DLList<FaunaSpecies> faunaList = new DLList<>();
+        
+        for (FloraSpecies f : floraSpecies.inOrderTraversal(floraSpecies.getRoot())) {
+            if (f.getName().equals("Oak") || f.getName().equals("Ash")) {
+                floraList.add(f);
+            }
+        }
+
+        for (FaunaSpecies f : faunaSpecies.inOrderTraversal(faunaSpecies.getRoot())) {
+            if (f.getName().equals("Fallow Deer") || f.getName().equals("Red Fox")) {
+                faunaList.add(f);
+            }
+        }
+        
+        greenAreas.add(new GreenArea("Pheonix Park", floraList, faunaList));
     }
 
     public static BinaryTree<FloraSpecies> getFloraSpecies() {

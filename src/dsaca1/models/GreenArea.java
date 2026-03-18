@@ -15,8 +15,10 @@ public class GreenArea implements Comparable<GreenArea> {
     private DLList<FloraSpecies> flora;
     private DLList<FaunaSpecies> fauna;
 
-    public GreenArea(String name) {
+    public GreenArea(String name, DLList<FloraSpecies> flora, DLList<FaunaSpecies> fauna) {
         this.name = name;
+        this.flora = flora;
+        this.fauna = fauna;
     }
 
     public String getName() {
