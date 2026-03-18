@@ -96,4 +96,22 @@ public class SLList<T> implements LinearListInterface<T> {
         return size;
     }
     
+    public String printList() {
+        StringBuilder output = new StringBuilder();
+        SLNode tempNode = head;
+        while (tempNode != null) {
+            output.append(", ");
+            output.append(tempNode.toString());
+            tempNode = tempNode.getNext();
+        }
+        
+        return output.toString();
+    }
+
+    @Override
+    public String toString() {
+        return printList();
+    }
+    
+    
 }

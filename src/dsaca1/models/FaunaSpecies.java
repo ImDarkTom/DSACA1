@@ -10,7 +10,7 @@ import dsaca1.enums.Diet;
  *
  * @author tom
  */
-public class FaunaSpecies extends Species {
+public class FaunaSpecies extends Species implements Comparable<FaunaSpecies> {
     Diet diet;
     
     public FaunaSpecies(String name, String nomenclature, String description, String icon, Diet diet) {
@@ -24,5 +24,9 @@ public class FaunaSpecies extends Species {
     public void setDiet(Diet diet) {
         this.diet = diet;
     }
-    
+
+    @Override
+    public int compareTo(FaunaSpecies o) {
+        return name.compareTo(o.getName());
+    }
 }

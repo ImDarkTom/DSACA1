@@ -28,4 +28,9 @@ public class SLNode<T> {
     public void setNext(SLNode<T> next) {
         this.next = next;
     }
+
+    @Override
+    public String toString() {
+        return data.toString();
+    }
 }
