@@ -9,6 +9,7 @@ import dsaca1.datastructures.singlylinkedlist.SLList;
 import dsaca1.enums.Diet;
 import dsaca1.models.FaunaSpecies;
 import dsaca1.models.FloraSpecies;
+import dsaca1.models.GreenArea;
 import dsaca1.models.Species;
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -18,6 +19,7 @@ import java.util.function.Consumer;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -40,6 +42,7 @@ public class MainGUI extends javax.swing.JFrame {
         
         refreshFloraList();
         refreshFaunaList();
+        refreshGreenAreasList();
     }
     
     private <T extends Species> JPanel createListItemPanel(T species, Consumer<T> onDelete) {
@@ -113,6 +116,16 @@ public class MainGUI extends javax.swing.JFrame {
                 }
         );
     }
+    
+    private void refreshGreenAreasList() {
+        DefaultListModel<GreenArea> model = new DefaultListModel<>();
+        
+        for (GreenArea area : AppState.getGreenAreas()) {
+            model.addElement(area);
+        }
+        
+        greenAreasList.setModel(model);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -152,6 +165,12 @@ public class MainGUI extends javax.swing.JFrame {
         addFaunaBtn = new javax.swing.JButton();
         faunaDietCB = new javax.swing.JComboBox<>();
         faunaDietLbl = new javax.swing.JLabel();
+        greenAreasTabPanel = new javax.swing.JPanel();
+        greenAreaListScrollPane = new javax.swing.JScrollPane();
+        greenAreasList = new javax.swing.JList<>();
+        addGreenAreaBtn = new javax.swing.JButton();
+        editGreenAreaBtn = new javax.swing.JButton();
+        deleteGreenAreaBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("DSA CA1 App");
@@ -218,8 +237,8 @@ public class MainGUI extends javax.swing.JFrame {
                                 .addComponent(floraGrowthTypeLbl)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(floraGrowthTypeTF, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                        .addComponent(floraListPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(floraListPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         floraTabPaneLayout.setVerticalGroup(
@@ -359,6 +378,46 @@ public class MainGUI extends javax.swing.JFrame {
 
         tabbedPane.addTab("Fauna", faunaTabPanel);
 
+        greenAreaListScrollPane.setViewportView(greenAreasList);
+
+        addGreenAreaBtn.setText("Add");
+
+        editGreenAreaBtn.setText("Edit");
+
+        deleteGreenAreaBtn.setText("Delete");
+        deleteGreenAreaBtn.addActionListener(this::deleteGreenAreaBtnActionPerformed);
+
+        javax.swing.GroupLayout greenAreasTabPanelLayout = new javax.swing.GroupLayout(greenAreasTabPanel);
+        greenAreasTabPanel.setLayout(greenAreasTabPanelLayout);
+        greenAreasTabPanelLayout.setHorizontalGroup(
+            greenAreasTabPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(greenAreasTabPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(greenAreasTabPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(greenAreaListScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(greenAreasTabPanelLayout.createSequentialGroup()
+                        .addComponent(addGreenAreaBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(editGreenAreaBtn)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(deleteGreenAreaBtn)
+                .addContainerGap(366, Short.MAX_VALUE))
+        );
+        greenAreasTabPanelLayout.setVerticalGroup(
+            greenAreasTabPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(greenAreasTabPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(greenAreaListScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(greenAreasTabPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addGreenAreaBtn)
+                    .addComponent(editGreenAreaBtn)
+                    .addComponent(deleteGreenAreaBtn))
+                .addContainerGap())
+        );
+
+        tabbedPane.addTab("Green Areas", greenAreasTabPanel);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -448,6 +507,16 @@ public class MainGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_floraGrowthTypeTFActionPerformed
 
+    private void deleteGreenAreaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteGreenAreaBtnActionPerformed
+        GreenArea selected = greenAreasList.getSelectedValue();
+        int selectedIndex = AppState.getGreenAreas().indexOf(selected);
+        if (selectedIndex != -1) {
+            AppState.getGreenAreas().remove(selectedIndex);
+        }
+        
+        refreshGreenAreasList();
+    }//GEN-LAST:event_deleteGreenAreaBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -478,6 +547,9 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JLabel addFaunaLbl;
     private javax.swing.JButton addFloraBtn;
     private javax.swing.JLabel addFloraLbl;
+    private javax.swing.JButton addGreenAreaBtn;
+    private javax.swing.JButton deleteGreenAreaBtn;
+    private javax.swing.JButton editGreenAreaBtn;
     private javax.swing.JLabel faunaDescriptionLbl;
     private javax.swing.JTextField faunaDescriptionTF;
     private javax.swing.JComboBox<Diet> faunaDietCB;
@@ -502,6 +574,9 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JLabel floraNomenclatureLbl;
     private javax.swing.JTextField floraNomenclatureTF;
     private javax.swing.JPanel floraTabPane;
+    private javax.swing.JScrollPane greenAreaListScrollPane;
+    private javax.swing.JList<GreenArea> greenAreasList;
+    private javax.swing.JPanel greenAreasTabPanel;
     private javax.swing.JTabbedPane tabbedPane;
     // End of variables declaration//GEN-END:variables
 }

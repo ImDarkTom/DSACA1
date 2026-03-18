@@ -6,9 +6,11 @@ package dsaca1;
 
 import dsaca1.datastructures.binarysearchtree.BTNode;
 import dsaca1.datastructures.binarysearchtree.BinaryTree;
+import dsaca1.datastructures.singlylinkedlist.SLList;
 import dsaca1.enums.Diet;
 import dsaca1.models.FaunaSpecies;
 import dsaca1.models.FloraSpecies;
+import dsaca1.models.GreenArea;
 
 /**
  *
@@ -17,6 +19,8 @@ import dsaca1.models.FloraSpecies;
 public class AppState {
     private static final BinaryTree<FloraSpecies> floraSpecies = new BinaryTree<>();
     private static final BinaryTree<FaunaSpecies> faunaSpecies = new BinaryTree<>();
+    
+    private static final SLList<GreenArea> greenAreas = new SLList<>();
     
     public static void setup() {
         // Pheonix Park
@@ -60,6 +64,11 @@ public class AppState {
                 faunaSpecies.getRoot(),
                 new BTNode<>(new FaunaSpecies("Red Fox", "Vulpes vulpes", "Reddish-coated predator.", "", Diet.OMNIVORE))
         );
+        
+        
+        
+        // Green areas
+        greenAreas.add(new GreenArea("Pheonix Park"));
     }
 
     public static BinaryTree<FloraSpecies> getFloraSpecies() {
@@ -69,5 +78,8 @@ public class AppState {
     public static BinaryTree<FaunaSpecies> getFaunaSpecies() {
         return faunaSpecies;
     }
-    
+
+    public static SLList<GreenArea> getGreenAreas() {
+        return greenAreas;
+    }
 }

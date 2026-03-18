@@ -35,6 +35,22 @@ public class SLList<T> implements LinearListInterface<T>, Iterable<T> {
             currNode = currNode.getNext();
         }
     }
+    
+    public int indexOf(T value) {
+        currNode = head;
+        prevNode = null;
+        
+        int index = 1;
+        while (currNode != null) {
+            if (currNode.data == value) {
+                return index;
+            }
+            currNode = currNode.next;
+            index++;
+        }
+        
+        return -1;
+    }
 
     @Override
     public void add(T elem, int pos) {
