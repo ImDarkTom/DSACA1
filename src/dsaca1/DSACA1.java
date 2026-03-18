@@ -10,10 +10,9 @@ package dsaca1;
  */
 public class DSACA1 {
     public static void main(String[] args) {
+        AppState.setup();
         MainGUI gui = new MainGUI();
         gui.setVisible(true);
-        
-        AppState.test();
     }
     
 }

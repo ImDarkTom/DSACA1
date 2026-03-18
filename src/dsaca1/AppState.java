@@ -6,35 +6,46 @@ package dsaca1;
 
 import dsaca1.datastructures.binarysearchtree.BTNode;
 import dsaca1.datastructures.binarysearchtree.BinaryTree;
-import dsaca1.datastructures.singlylinkedlist.SLList;
-import dsaca1.enums.Diet;
-import dsaca1.models.FaunaSpecies;
+import dsaca1.models.FloraSpecies;
 
 /**
  *
  * @author tom
  */
 public class AppState {
-    private static final BinaryTree<FaunaSpecies> faunaSpecies = new BinaryTree<>();
+    private static final BinaryTree<FloraSpecies> floraSpecies = new BinaryTree<>();
     
-    public static void test() {
-        faunaSpecies.insertNode(
-                faunaSpecies.getRoot(),
-                new BTNode<>(new FaunaSpecies("deer", "deer nomen", "a desc", "https", Diet.HERBIVORE))
+    public static void setup() {
+        // Pheonix Park
+        floraSpecies.insertNode(
+                floraSpecies.getRoot(), 
+                new BTNode<>(new FloraSpecies("Oak", "Quercus spp.", "Broadleaf tree.", "", "Tree"))
         );
         
-        faunaSpecies.insertNode(
-                faunaSpecies.getRoot(),
-                new BTNode<>(new FaunaSpecies("ant", "ant nomen", "a desc 2", "https", Diet.OMNIVORE))
+        floraSpecies.insertNode(
+                floraSpecies.getRoot(),
+                new BTNode<>(new FloraSpecies("Ash", "Fraxinus excelsior", "Widespread deciduous tree.", "", "Tree"))
         );
         
-        faunaSpecies.insertNode(
-                faunaSpecies.getRoot(),
-                new BTNode<>(new FaunaSpecies("bear", "bear nomen", "a desc 3", "https", Diet.CARNIVORE))
+        floraSpecies.insertNode(
+                floraSpecies.getRoot(),
+                new BTNode<>(new FloraSpecies("Wild Iris", "Iris pseudacorus", "Large yellow wetland flower.", "", "Flower"))
         );
         
-        SLList list = faunaSpecies.inOrderTraversal(faunaSpecies.getRoot());
+        floraSpecies.insertNode(
+                floraSpecies.getRoot(),
+                new BTNode<>(new FloraSpecies("Lady’s Bedstraw", "Galium verum", "Native meadow herb.", "", "Flower"))
+        );
         
-        System.out.println(list);
+        floraSpecies.insertNode(
+                floraSpecies.getRoot(),
+                new BTNode<>(new FloraSpecies("Common Bird's‑foot‑trefoil", "Lotus corniculatus", "Small yellow wildflower.", "", "Flower"))
+        );
     }
+
+    public static BinaryTree<FloraSpecies> getFloraSpecies() {
+        return floraSpecies;
+    }
+    
+    
 }

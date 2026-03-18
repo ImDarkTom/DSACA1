@@ -24,7 +24,7 @@ public class FaunaSpecies extends Species implements Comparable<FaunaSpecies> {
     public void setDiet(Diet diet) {
         this.diet = diet;
     }
-
+    
     @Override
     public int compareTo(FaunaSpecies o) {
         return name.compareTo(o.getName());

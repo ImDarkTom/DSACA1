@@ -5,12 +5,13 @@
 package dsaca1.datastructures.singlylinkedlist;
 
 import dsaca1.datastructures.LinearListInterface;
+import java.util.Iterator;
 
 /**
  *
  * @author tom
  */
-public class SLList<T> implements LinearListInterface<T> {
+public class SLList<T> implements LinearListInterface<T>, Iterable<T> {
     private SLNode<T> head;
     private int size;
     
@@ -112,6 +113,31 @@ public class SLList<T> implements LinearListInterface<T> {
     public String toString() {
         return printList();
     }
-    
-    
+
+    @Override
+    public Iterator<T> iterator() {
+        // https://stackoverflow.com/a/5849625/17727765
+        
+        Iterator<T> it = new Iterator<T>() {
+            // start from head
+            private SLNode<T> current = head;  
+            
+            @Override
+            public boolean hasNext() {
+                return current != null;
+            }
+
+            @Override
+            public T next() {
+                if (current == null) {
+                    throw new IndexOutOfBoundsException();
+                }
+                T data = current.getData();
+                current = current.getNext();
+                return data;
+            }
+        };
+        
+        return it;
+    }
 }

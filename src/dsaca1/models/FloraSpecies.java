@@ -8,7 +8,7 @@ package dsaca1.models;
  *
  * @author tom
  */
-public class FloraSpecies extends Species {
+public class FloraSpecies extends Species implements Comparable<FloraSpecies> {
     String growthForm;
        
     public FloraSpecies(String name, String nomenclature, String description, String icon, String growthForm) {
@@ -23,5 +23,10 @@ public class FloraSpecies extends Species {
 
     public void setGrowthForm(String growthForm) {
         this.growthForm = growthForm;
+    }
+    
+    @Override
+    public int compareTo(FloraSpecies o) {
+        return name.compareTo(o.getName());
     }
 }

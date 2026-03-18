@@ -31,6 +31,12 @@ public class BTNode<T> {
         return rightChild;
     }
 
+    public void setElement(T element) {
+        this.element = element;
+    }
+    
+    
+
     public void setLeftChild(BTNode leftChild) {
         this.leftChild = leftChild;
     }

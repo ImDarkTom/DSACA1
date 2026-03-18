@@ -8,7 +8,7 @@ package dsaca1.models;
  *
  * @author tom
  */
-abstract class Species {
+public abstract class Species {
     String name;
     String nomenclature;
     String description;

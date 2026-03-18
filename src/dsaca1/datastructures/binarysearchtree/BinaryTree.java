@@ -5,7 +5,6 @@
 package dsaca1.datastructures.binarysearchtree;
 
 import dsaca1.datastructures.singlylinkedlist.SLList;
-import java.util.ArrayList;
 
 /**
  *
@@ -100,5 +99,57 @@ public class BinaryTree<T extends Comparable<T>> {
         result.add(startNode.getElement());
         // Traverse right
         inOrderTraversalHelper(startNode.getRightChild(), result);
+    }
+    
+    private BTNode<T> deleteHelper(T value, BTNode<T> startNode) {
+        if (startNode == null) {
+            return null;
+        }
+        
+        int comparison = value.compareTo(startNode.getElement());
+        
+        if (comparison < 0) {
+            // Go left
+            startNode.setLeftChild(deleteHelper(value, startNode.getLeftChild()));
+        } else if (comparison > 0) {
+            // Go right
+            startNode.setRightChild(deleteHelper(value, startNode.getRightChild()));
+        } else {
+            // Node to delete found
+            
+            // Case 1: No children
+            if (startNode.getLeftChild() == null && startNode.getRightChild() == null) {
+                return null;
+            }
+            
+            // Case 2: One child
+            if (startNode.getLeftChild() == null) {
+                return startNode.getRightChild();
+            }
+            
+            if (startNode.getRightChild() == null) {
+                return startNode.getLeftChild();
+            }
+            
+            // Case 3: Two children
+            BTNode<T> successor = findMin(startNode.getRightChild());
+            startNode.setElement(successor.getElement());
+
+            // Delete the successor
+            startNode.setRightChild(deleteHelper(successor.getElement(), startNode.getRightChild()));
+        }
+        
+        return startNode;
+    }
+    
+    public void delete(T value) {
+        root = deleteHelper(value, root);
+    }
+    
+    private BTNode<T> findMin(BTNode<T> node) {
+        while (node.getLeftChild() != null) {
+            node = node.getLeftChild();
+        }
+        return node;
     }
 }
