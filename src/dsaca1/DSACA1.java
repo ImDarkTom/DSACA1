@@ -9,12 +9,11 @@ package dsaca1;
  * @author tom
  */
 public class DSACA1 {
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        System.out.println("working");
+        MainGUI gui = new MainGUI();
+        gui.setVisible(true);
+        
+        AppState.test();
     }
     
 }
