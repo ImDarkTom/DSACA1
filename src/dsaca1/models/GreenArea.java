@@ -11,9 +11,9 @@ import dsaca1.datastructures.doublylinkedlist.DLList;
  * @author tom
  */
 public class GreenArea implements Comparable<GreenArea> {
-    private String name;
-    private DLList<FloraSpecies> flora;
-    private DLList<FaunaSpecies> fauna;
+    private final String name;
+    private final DLList<FloraSpecies> flora;
+    private final DLList<FaunaSpecies> fauna;
 
     public GreenArea(String name, DLList<FloraSpecies> flora, DLList<FaunaSpecies> fauna) {
         this.name = name;
