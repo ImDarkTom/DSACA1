@@ -166,6 +166,7 @@ public class BinaryTree<T extends Comparable<T>> {
         while (node.getLeftChild() != null) {
             node = node.getLeftChild();
         }
+        
         return node;
     }
 }

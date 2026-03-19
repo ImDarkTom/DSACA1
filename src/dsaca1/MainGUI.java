@@ -11,6 +11,7 @@ import dsaca1.models.FaunaSpecies;
 import dsaca1.models.FloraSpecies;
 import dsaca1.models.GreenArea;
 import dsaca1.models.Species;
+import dsaca1.ui.FloraListItem;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -109,16 +110,22 @@ public class MainGUI extends javax.swing.JFrame {
     }
     
     private void refreshFloraList() {
-        refreshList(
-            floraListPanel,
-            AppState.getFloraSpecies().inOrderTraversal(),
-            (t) -> {
-                AppState.getFloraSpecies().delete(t);
-                refreshFloraList();
-            }
-        );
-        
         SLList<FloraSpecies> floraList = AppState.getFloraSpecies().inOrderTraversal();
+        
+        floraListPanel.removeAll();
+
+        for (FloraSpecies species : floraList) {
+            floraListPanel.add(new FloraListItem(species));
+        }
+
+        floraListPanel.revalidate();
+        floraListPanel.repaint();
+        
+//        (t) -> {
+//            AppState.getFloraSpecies().delete(t);
+//            refreshFloraList();
+//        }
+
         greenAreaFloraList.clearSelection();
         greenAreaFloraList.setModel(convertSLLToListModel(floraList));
     }
