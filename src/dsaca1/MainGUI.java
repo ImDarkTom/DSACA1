@@ -102,14 +102,14 @@ public class MainGUI extends javax.swing.JFrame {
     private void refreshFloraList() {
         refreshList(
             floraListPanel,
-            AppState.getFloraSpecies().inOrderTraversal(AppState.getFloraSpecies().getRoot()),
+            AppState.getFloraSpecies().inOrderTraversal(),
             (t) -> {
                 AppState.getFloraSpecies().delete(t);
                 refreshFloraList();
             }
         );
         
-        SLList<FloraSpecies> floraList = AppState.getFloraSpecies().inOrderTraversal(AppState.getFloraSpecies().getRoot());
+        SLList<FloraSpecies> floraList = AppState.getFloraSpecies().inOrderTraversal();
         greenAreaFloraList.clearSelection();
         greenAreaFloraList.setModel(convertSLLToListModel(floraList));
     }
@@ -117,14 +117,14 @@ public class MainGUI extends javax.swing.JFrame {
     private void refreshFaunaList() {
         refreshList(
                 faunaListPanel,
-                AppState.getFaunaSpecies().inOrderTraversal(AppState.getFaunaSpecies().getRoot()),
+                AppState.getFaunaSpecies().inOrderTraversal(),
                 (t) -> {
                     AppState.getFaunaSpecies().delete(t);
                     refreshFaunaList();
                 }
         );
         
-        SLList<FaunaSpecies> faunaList = AppState.getFaunaSpecies().inOrderTraversal(AppState.getFaunaSpecies().getRoot());
+        SLList<FaunaSpecies> faunaList = AppState.getFaunaSpecies().inOrderTraversal();
         greenAreaFaunaList.clearSelection();
         greenAreaFaunaList.setModel(convertSLLToListModel(faunaList));
     }
@@ -559,14 +559,13 @@ public class MainGUI extends javax.swing.JFrame {
     private void addFloraBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFloraBtnActionPerformed
         try {
             AppState.getFloraSpecies().insertNode(
-                    AppState.getFloraSpecies().getRoot(),
-                    new BTNode<>(new FloraSpecies(
-                            floraNameTF.getText(),
-                            floraNomenclatureTF.getText(),
-                            floraDescriptionTF.getText(),
-                            floraIconTF.getText(),
-                            floraGrowthTypeTF.getText()
-                    ))
+                new FloraSpecies(
+                    floraNameTF.getText(),
+                    floraNomenclatureTF.getText(),
+                    floraDescriptionTF.getText(),
+                    floraIconTF.getText(),
+                    floraGrowthTypeTF.getText()
+                )
             );
 
             refreshFloraList();
@@ -594,14 +593,13 @@ public class MainGUI extends javax.swing.JFrame {
     private void addFaunaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFaunaBtnActionPerformed
         try {
             AppState.getFaunaSpecies().insertNode(
-                    AppState.getFaunaSpecies().getRoot(),
-                    new BTNode<>(new FaunaSpecies(
-                            faunaNameTF.getText(),
-                            faunaNomenclatureTF.getText(),
-                            faunaDescriptionTF.getText(),
-                            faunaIconTF.getText(),
-                            Diet.valueOf(faunaDietCB.getSelectedItem().toString())
-                    ))
+                new FaunaSpecies(
+                    faunaNameTF.getText(),
+                    faunaNomenclatureTF.getText(),
+                    faunaDescriptionTF.getText(),
+                    faunaIconTF.getText(),
+                    Diet.valueOf(faunaDietCB.getSelectedItem().toString())
+                )
             );
 
             refreshFaunaList();

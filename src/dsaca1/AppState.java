@@ -4,7 +4,6 @@
  */
 package dsaca1;
 
-import dsaca1.datastructures.binarysearchtree.BTNode;
 import dsaca1.datastructures.binarysearchtree.BinaryTree;
 import dsaca1.datastructures.doublylinkedlist.DLList;
 import dsaca1.datastructures.singlylinkedlist.SLList;
@@ -25,66 +24,44 @@ public class AppState {
     
     public static void setup() {
         // Pheonix Park
-        floraSpecies.insertNode(
-                floraSpecies.getRoot(), 
-                new BTNode<>(new FloraSpecies("Oak", "Quercus spp.", "Broadleaf tree.", "", "Tree"))
-        );
+        floraSpecies.insertNode(new FloraSpecies("Oak", "Quercus spp.", "Broadleaf tree.", "", "Tree"));
         
-        floraSpecies.insertNode(
-                floraSpecies.getRoot(),
-                new BTNode<>(new FloraSpecies("Ash", "Fraxinus excelsior", "Widespread deciduous tree.", "", "Tree"))
-        );
+        floraSpecies.insertNode(new FloraSpecies("Ash", "Fraxinus excelsior", "Widespread deciduous tree.", "", "Tree"));
         
-        floraSpecies.insertNode(
-                floraSpecies.getRoot(),
-                new BTNode<>(new FloraSpecies("Wild Iris", "Iris pseudacorus", "Large yellow wetland flower.", "", "Flower"))
-        );
+        floraSpecies.insertNode(new FloraSpecies("Wild Iris", "Iris pseudacorus", "Large yellow wetland flower.", "", "Flower"));
         
-        floraSpecies.insertNode(
-                floraSpecies.getRoot(),
-                new BTNode<>(new FloraSpecies("Lady’s Bedstraw", "Galium verum", "Native meadow herb.", "", "Flower"))
-        );
+        floraSpecies.insertNode(new FloraSpecies("Lady’s Bedstraw", "Galium verum", "Native meadow herb.", "", "Flower"));
         
-        floraSpecies.insertNode(
-                floraSpecies.getRoot(),
-                new BTNode<>(new FloraSpecies("Common Bird's‑foot‑trefoil", "Lotus corniculatus", "Small yellow wildflower.", "", "Flower"))
-        );
+        floraSpecies.insertNode(new FloraSpecies("Common Bird's‑foot‑trefoil", "Lotus corniculatus", "Small yellow wildflower.", "", "Flower"));
         
         
-        faunaSpecies.insertNode(
-                faunaSpecies.getRoot(),
-                new BTNode<>(new FaunaSpecies("Fallow Deer", "Dama dama", "Medium-sized deer.", "", Diet.HERBIVORE))
-        );
+        faunaSpecies.insertNode(new FaunaSpecies("Fallow Deer", "Dama dama", "Medium-sized deer.", "", Diet.HERBIVORE));
         
-        faunaSpecies.insertNode(
-                faunaSpecies.getRoot(),
-                new BTNode<>(new FaunaSpecies("European Rabbit", "Oryctolagus cuniculus", "Small burrowing mammal.", "", Diet.HERBIVORE))
-        );
+        faunaSpecies.insertNode(new FaunaSpecies("European Rabbit", "Oryctolagus cuniculus", "Small burrowing mammal.", "", Diet.HERBIVORE));
         
-        faunaSpecies.insertNode(
-                faunaSpecies.getRoot(),
-                new BTNode<>(new FaunaSpecies("Red Fox", "Vulpes vulpes", "Reddish-coated predator.", "", Diet.OMNIVORE))
-        );
+        faunaSpecies.insertNode(new FaunaSpecies("Red Fox", "Vulpes vulpes", "Reddish-coated predator.", "", Diet.OMNIVORE));
         
         
         
         // Green areas
-        DLList<FloraSpecies> floraList = new DLList<>();
-        DLList<FaunaSpecies> faunaList = new DLList<>();
+        DLList<FloraSpecies> pheonixParkFlora = new DLList<>();
+        DLList<FaunaSpecies> pheonixParkFauna = new DLList<>();
         
-        for (FloraSpecies f : floraSpecies.inOrderTraversal(floraSpecies.getRoot())) {
+        for (FloraSpecies f : floraSpecies.inOrderTraversal()) {
+            // Add oak and ash to list of flora species in pheonix park
             if (f.getName().equals("Oak") || f.getName().equals("Ash")) {
-                floraList.add(f);
+                pheonixParkFlora.add(f);
             }
         }
 
-        for (FaunaSpecies f : faunaSpecies.inOrderTraversal(faunaSpecies.getRoot())) {
+        for (FaunaSpecies f : faunaSpecies.inOrderTraversal()) {
+            // Add fallow deer and red fox to list of fauna species in pheonix park
             if (f.getName().equals("Fallow Deer") || f.getName().equals("Red Fox")) {
-                faunaList.add(f);
+                pheonixParkFauna.add(f);
             }
         }
         
-        greenAreas.add(new GreenArea("Pheonix Park", floraList, faunaList));
+        greenAreas.add(new GreenArea("Pheonix Park", pheonixParkFlora, pheonixParkFauna));
     }
 
     public static BinaryTree<FloraSpecies> getFloraSpecies() {

@@ -9,6 +9,7 @@ import dsaca1.datastructures.singlylinkedlist.SLList;
 /**
  *
  * @author tom
+ * @param <T> The data type each tree node holds.
  */
 public class BinaryTree<T extends Comparable<T>> {
     private BTNode<T> root;
@@ -31,6 +32,15 @@ public class BinaryTree<T extends Comparable<T>> {
     
     public boolean isEmpty() {
         return root == null;
+    }
+    
+    // Inserting a Node
+    public void insertNode(T elem) {
+        insertNode(getRoot(), new BTNode<>(elem));
+    }
+    
+    public void insertNode(BTNode<T> newNode) {
+        insertNode(getRoot(), newNode);
     }
     
     public void insertNode(BTNode<T> startNode, BTNode<T> newNode) {
@@ -89,7 +99,7 @@ public class BinaryTree<T extends Comparable<T>> {
     }
     
     public SLList<T> inOrderTraversal() {
-        return inOrderTraversal(root);
+        return inOrderTraversal(getRoot());
     }
     
     private void inOrderTraversalHelper(BTNode<T> startNode, SLList<T> result) {
