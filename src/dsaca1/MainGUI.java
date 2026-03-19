@@ -4,7 +4,6 @@
  */
 package dsaca1;
 
-import dsaca1.datastructures.binarysearchtree.BTNode;
 import dsaca1.datastructures.doublylinkedlist.DLList;
 import dsaca1.datastructures.singlylinkedlist.SLList;
 import dsaca1.enums.Diet;
@@ -28,7 +27,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.ListModel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.BevelBorder;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 /**
  *
@@ -42,6 +44,13 @@ public class MainGUI extends javax.swing.JFrame {
      * Creates new form MainGUI
      */
     public MainGUI() {
+        try {
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+                | UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
+        
         initComponents();
         
         refreshFloraList();

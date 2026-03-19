@@ -1,17 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dsaca1.datastructures.binarysearchtree;
 
 /**
- *
+ * Binary Search Tree node.
  * @author tom
+ * @param <T> The data type each node holds.
  */
 public class BTNode<T> {
     private T element;
-    private BTNode leftChild;
-    private BTNode rightChild;
+    private BTNode<T> leftChild;
+    private BTNode<T> rightChild;
     
     public BTNode(T element) {
         this.element = element;
@@ -22,20 +19,18 @@ public class BTNode<T> {
     public T getElement() {
         return element;
     }
-
-    public BTNode getLeftChild() {
-        return leftChild;
-    }
-
-    public BTNode getRightChild() {
-        return rightChild;
-    }
-
+    
     public void setElement(T element) {
         this.element = element;
     }
-    
-    
+
+    public BTNode<T> getLeftChild() {
+        return leftChild;
+    }
+
+    public BTNode<T> getRightChild() {
+        return rightChild;
+    }
 
     public void setLeftChild(BTNode leftChild) {
         this.leftChild = leftChild;

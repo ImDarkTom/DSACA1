@@ -7,7 +7,7 @@ package dsaca1.datastructures.binarysearchtree;
 import dsaca1.datastructures.singlylinkedlist.SLList;
 
 /**
- *
+ * Binary Search Tree ADT.
  * @author tom
  * @param <T> The data type each tree node holds.
  */
@@ -17,32 +17,23 @@ public class BinaryTree<T extends Comparable<T>> {
     public BinaryTree() {
         root = null;
     }
-
-    public BTNode getRoot() {
-        return root;
-    }
-    
-    public int countNodes(BTNode startNode) {
-        if (startNode == null) {
-            return 0;
-        } else {
-            return 1 + countNodes(startNode.getLeftChild()) + countNodes(startNode.getRightChild());
-        }
-    }
     
     public boolean isEmpty() {
         return root == null;
     }
     
     // Inserting a Node
+    // using element datatype
     public void insertNode(T elem) {
-        insertNode(getRoot(), new BTNode<>(elem));
+        insertNode(root, new BTNode<>(elem));
     }
     
+    // using a pre-created node
     public void insertNode(BTNode<T> newNode) {
-        insertNode(getRoot(), newNode);
+        insertNode(root, newNode);
     }
     
+    //
     public void insertNode(BTNode<T> startNode, BTNode<T> newNode) {
         // if the tree is empty, the newNode becames the root of the tree
         if (root == null) {
@@ -73,6 +64,8 @@ public class BinaryTree<T extends Comparable<T>> {
         }
     }
     
+    // Searching the tree
+    
     public BTNode search(T value, BTNode<T> startNode) {
         if (startNode == null) {
             return null;
@@ -90,7 +83,13 @@ public class BinaryTree<T extends Comparable<T>> {
             return search(value, startNode.getRightChild());
         }
     }
+
+    // Using in-order traversal to create an iterable singly-linked list.
     
+    public SLList<T> inOrderTraversal() {
+        // Use root as default for traversal
+        return inOrderTraversal(root);
+    }
 
     public SLList<T> inOrderTraversal(BTNode startNode) {
         SLList<T> list = new SLList<>();
@@ -98,11 +97,8 @@ public class BinaryTree<T extends Comparable<T>> {
         return list;
     }
     
-    public SLList<T> inOrderTraversal() {
-        return inOrderTraversal(getRoot());
-    }
-    
     private void inOrderTraversalHelper(BTNode<T> startNode, SLList<T> result) {
+        // No start node means empty list
         if (startNode == null) {
             return;
         }
@@ -115,19 +111,25 @@ public class BinaryTree<T extends Comparable<T>> {
         inOrderTraversalHelper(startNode.getRightChild(), result);
     }
     
-    private BTNode<T> deleteHelper(T value, BTNode<T> startNode) {
+    
+    // Deleting an element
+    public void delete(T element) {
+        root = deleteHelper(element, root);
+    }
+    
+    private BTNode<T> deleteHelper(T element, BTNode<T> startNode) {
         if (startNode == null) {
             return null;
         }
         
-        int comparison = value.compareTo(startNode.getElement());
+        int comparison = element.compareTo(startNode.getElement());
         
         if (comparison < 0) {
             // Go left
-            startNode.setLeftChild(deleteHelper(value, startNode.getLeftChild()));
+            startNode.setLeftChild(deleteHelper(element, startNode.getLeftChild()));
         } else if (comparison > 0) {
             // Go right
-            startNode.setRightChild(deleteHelper(value, startNode.getRightChild()));
+            startNode.setRightChild(deleteHelper(element, startNode.getRightChild()));
         } else {
             // Node to delete found
             
@@ -138,26 +140,26 @@ public class BinaryTree<T extends Comparable<T>> {
             
             // Case 2: One child
             if (startNode.getLeftChild() == null) {
+                // If we don't have a left child, set the current node to the right child
                 return startNode.getRightChild();
             }
             
             if (startNode.getRightChild() == null) {
+                // If we don't have a right child, set the current node to the left child
                 return startNode.getLeftChild();
             }
             
             // Case 3: Two children
+            // Pick the smallest value from the right subtree as a successor
             BTNode<T> successor = findMin(startNode.getRightChild());
+            // Replace the current node with the successor's value
             startNode.setElement(successor.getElement());
 
-            // Delete the successor
+            // Delete the successor, and recursively run this same process on each of it's children
             startNode.setRightChild(deleteHelper(successor.getElement(), startNode.getRightChild()));
         }
         
         return startNode;
-    }
-    
-    public void delete(T value) {
-        root = deleteHelper(value, root);
     }
     
     private BTNode<T> findMin(BTNode<T> node) {
