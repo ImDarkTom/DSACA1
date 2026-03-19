@@ -5,6 +5,7 @@
 package dsaca1.ui;
 
 import dsaca1.models.FloraSpecies;
+import java.util.function.Consumer;
 
 /**
  *
@@ -12,12 +13,15 @@ import dsaca1.models.FloraSpecies;
  */
 public class FloraListItem extends javax.swing.JPanel {
     private FloraSpecies item;
+    private Consumer<FloraSpecies> onDelete;
 
     /**
      * Creates new form FloraListItem
      */
-    public FloraListItem(FloraSpecies item) {
+    public FloraListItem(FloraSpecies item, Consumer<FloraSpecies> onDelete) {
         this.item = item;
+        this.onDelete = onDelete;
+        
         initComponents();
     }
     
@@ -51,6 +55,7 @@ public class FloraListItem extends javax.swing.JPanel {
         nameLbl.setText(getItemName());
 
         deleteBtn.setText("Delete");
+        deleteBtn.addActionListener(this::deleteBtnActionPerformed);
 
         editBtn.setText("Edit");
 
@@ -77,6 +82,10 @@ public class FloraListItem extends javax.swing.JPanel {
                 .addComponent(deleteBtn))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        this.onDelete.accept(this.item);
+    }//GEN-LAST:event_deleteBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

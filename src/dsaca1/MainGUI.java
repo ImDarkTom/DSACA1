@@ -115,16 +115,14 @@ public class MainGUI extends javax.swing.JFrame {
         floraListPanel.removeAll();
 
         for (FloraSpecies species : floraList) {
-            floraListPanel.add(new FloraListItem(species));
+            floraListPanel.add(new FloraListItem(species, (t) -> {
+                AppState.getFloraSpecies().delete(t);
+                refreshFloraList();
+            }));
         }
 
         floraListPanel.revalidate();
         floraListPanel.repaint();
-        
-//        (t) -> {
-//            AppState.getFloraSpecies().delete(t);
-//            refreshFloraList();
-//        }
 
         greenAreaFloraList.clearSelection();
         greenAreaFloraList.setModel(convertSLLToListModel(floraList));
