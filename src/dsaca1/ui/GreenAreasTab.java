@@ -113,6 +113,7 @@ public class GreenAreasTab extends javax.swing.JPanel {
         faunaListScrollPane = new javax.swing.JScrollPane();
         faunaListList = new javax.swing.JList<>();
         addBtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         greenAreasList.addListSelectionListener(this::greenAreasListValueChanged);
         greenAreaListScrollPane.setViewportView(greenAreasList);
@@ -138,6 +139,9 @@ public class GreenAreasTab extends javax.swing.JPanel {
         addBtn.setText("Add");
         addBtn.addActionListener(this::addBtnActionPerformed);
 
+        jLabel1.setFont(new java.awt.Font("Liberation Sans", 2, 13)); // NOI18N
+        jLabel1.setText("Ctrl + click to select multiple items");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -150,6 +154,11 @@ public class GreenAreasTab extends javax.swing.JPanel {
                         .addComponent(deselectBtn)
                         .addGap(78, 78, 78)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(addBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(deleteBtn))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,18 +169,14 @@ public class GreenAreasTab extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(floraListScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(floraLbl))
+                                    .addComponent(floraLbl)
+                                    .addComponent(jLabel1))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(faunaLbl)
                                         .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(faunaListScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(addBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(deleteBtn)))
+                                    .addComponent(faunaListScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE))))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -183,14 +188,16 @@ public class GreenAreasTab extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(nameLbl)
                             .addComponent(nameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(floraLbl)
                             .addComponent(faunaLbl))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(floraListScrollPane)
-                            .addComponent(faunaListScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)))
+                            .addComponent(floraListScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                            .addComponent(faunaListScrollPane)))
                     .addComponent(greenAreaListScrollPane))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -272,6 +279,7 @@ public class GreenAreasTab extends javax.swing.JPanel {
     private javax.swing.JScrollPane floraListScrollPane;
     private javax.swing.JScrollPane greenAreaListScrollPane;
     private javax.swing.JList<GreenArea> greenAreasList;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel nameLbl;
     private javax.swing.JTextField nameTF;
     // End of variables declaration//GEN-END:variables

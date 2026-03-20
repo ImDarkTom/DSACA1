@@ -86,7 +86,7 @@
                           <Component id="addFloraLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="floraListScrollPane" pref="293" max="32767" attributes="0"/>
+                      <Component id="floraListScrollPane" pref="288" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -134,7 +134,7 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="floraNameLbl">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Name"/>
+                <Property name="text" type="java.lang.String" value="Name*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="floraNameTF">
@@ -144,12 +144,12 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Liberation Sans" size="13" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Add a flora species"/>
+                <Property name="text" type="java.lang.String" value="Add/edit a flora species"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="floraNomenclatureLbl">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Nomenclature"/>
+                <Property name="text" type="java.lang.String" value="Nomenclature*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="floraNomenclatureTF">
@@ -171,7 +171,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="floraGrowthTypeLbl">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Growth type"/>
+                <Property name="text" type="java.lang.String" value="Growth Type*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="floraGrowthTypeTF">
@@ -255,7 +255,7 @@
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="faunaListScrollPane" pref="293" max="32767" attributes="0"/>
+                      <Component id="faunaListScrollPane" pref="288" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -303,7 +303,7 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="faunaNameLbl">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Name"/>
+                <Property name="text" type="java.lang.String" value="Name*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="faunaNameTF">
@@ -313,12 +313,12 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Liberation Sans" size="13" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Add a fauna species"/>
+                <Property name="text" type="java.lang.String" value="Add/edit a fauna species"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="faunaNomenclatureLbl">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Nomenclature"/>
+                <Property name="text" type="java.lang.String" value="Nomenclature*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="faunaNomenclatureTF">

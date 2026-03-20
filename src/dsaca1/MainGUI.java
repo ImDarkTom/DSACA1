@@ -147,19 +147,19 @@ public class MainGUI extends javax.swing.JFrame {
         setTitle("DSA CA1 App");
         setMinimumSize(new java.awt.Dimension(600, 500));
 
-        floraNameLbl.setText("Name");
+        floraNameLbl.setText("Name*");
 
         addFloraLbl.setFont(new java.awt.Font("Liberation Sans", 1, 13)); // NOI18N
-        addFloraLbl.setText("Add a flora species");
+        addFloraLbl.setText("Add/edit a flora species");
 
-        floraNomenclatureLbl.setText("Nomenclature");
+        floraNomenclatureLbl.setText("Nomenclature*");
 
         floraDescriptionLbl.setText("Description");
 
         addFloraBtn.setText("Add");
         addFloraBtn.addActionListener(this::addFloraBtnActionPerformed);
 
-        floraGrowthTypeLbl.setText("Growth type");
+        floraGrowthTypeLbl.setText("Growth Type*");
 
         floraListScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         floraListScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -202,7 +202,7 @@ public class MainGUI extends javax.swing.JFrame {
                             .addComponent(floraGrowthTypeTF, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(addFloraLbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(floraListScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+                .addComponent(floraListScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
                 .addContainerGap())
         );
         floraTabPaneLayout.setVerticalGroup(
@@ -239,12 +239,12 @@ public class MainGUI extends javax.swing.JFrame {
 
         tabbedPane.addTab("Flora", floraTabPane);
 
-        faunaNameLbl.setText("Name");
+        faunaNameLbl.setText("Name*");
 
         addFaunaLbl.setFont(new java.awt.Font("Liberation Sans", 1, 13)); // NOI18N
-        addFaunaLbl.setText("Add a fauna species");
+        addFaunaLbl.setText("Add/edit a fauna species");
 
-        faunaNomenclatureLbl.setText("Nomenclature");
+        faunaNomenclatureLbl.setText("Nomenclature*");
 
         faunaDescriptionLbl.setText("Description");
 
@@ -293,7 +293,7 @@ public class MainGUI extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(faunaDietCB, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(faunaListScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+                .addComponent(faunaListScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
                 .addContainerGap())
         );
         faunaTabPanelLayout.setVerticalGroup(
@@ -355,6 +355,11 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_faunaCancelEditBtnActionPerformed
 
     private void addFaunaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFaunaBtnActionPerformed
+        if (faunaNameTF.getText().isBlank() || faunaNomenclatureTF.getText().isBlank()) {
+            JOptionPane.showMessageDialog(this, "Name and nomenclature are required.");
+            return;
+        }
+        
         FaunaSpecies toBeAdded = new FaunaSpecies(
             faunaNameTF.getText(),
             faunaNomenclatureTF.getText(),
@@ -389,6 +394,14 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_floraCancelEditBtnActionPerformed
 
     private void addFloraBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFloraBtnActionPerformed
+        if (
+            floraNameTF.getText().isBlank() ||
+            floraNomenclatureTF.getText().isBlank() ||
+            floraGrowthTypeTF.getText().isBlank()) {
+            JOptionPane.showMessageDialog(this, "Name, nomenclature, and growth type are required.");
+            return;
+        }
+        
         FloraSpecies toBeAdded = new FloraSpecies(
             floraNameTF.getText(),
             floraNomenclatureTF.getText(),
