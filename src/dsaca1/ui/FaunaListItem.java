@@ -4,7 +4,7 @@
  */
 package dsaca1.ui;
 
-import dsaca1.models.FloraSpecies;
+import dsaca1.models.FaunaSpecies;
 import java.util.function.Consumer;
 import javax.swing.JOptionPane;
 
@@ -12,15 +12,15 @@ import javax.swing.JOptionPane;
  *
  * @author tom
  */
-public class FloraListItem extends javax.swing.JPanel {
-    private final FloraSpecies item;
-    private final Consumer<FloraSpecies> onDelete;
-    private final Consumer<FloraSpecies> onEdit;
+public class FaunaListItem extends javax.swing.JPanel {
+    private final FaunaSpecies item;
+    private final Consumer<FaunaSpecies> onDelete;
+    private final Consumer<FaunaSpecies> onEdit;
 
     /**
      * Creates new form FloraListItem
      */
-    public FloraListItem(FloraSpecies item, Consumer<FloraSpecies> onDelete, Consumer<FloraSpecies> onEdit) {
+    public FaunaListItem(FaunaSpecies item, Consumer<FaunaSpecies> onDelete, Consumer<FaunaSpecies> onEdit) {
         this.item = item;
         this.onDelete = onDelete;
         this.onEdit = onEdit;
@@ -36,12 +36,12 @@ public class FloraListItem extends javax.swing.JPanel {
         return item.getNomenclature();
     }
     
-    private String getItemGrowthForm() {
-        return item.getGrowthForm();
-    }
-    
     private String getItemDescription() {
         return item.getDescription();
+    }
+    
+    private String getItemDiet() {
+        return item.getDiet().toString();
     }
 
     /**
@@ -79,7 +79,7 @@ public class FloraListItem extends javax.swing.JPanel {
         nomenclatureLbl.setText(getItemNomenclature());
 
         growthFormLbl.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        growthFormLbl.setText(getItemGrowthForm());
+        growthFormLbl.setText(getItemDiet());
 
         descriptionLbl.setFont(new java.awt.Font("Noto Sans", 0, 10)); // NOI18N
         descriptionLbl.setText(getItemDescription());

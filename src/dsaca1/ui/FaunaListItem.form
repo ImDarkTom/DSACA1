@@ -121,7 +121,7 @@
       <Properties>
         <Property name="horizontalAlignment" type="int" value="11"/>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="getItemGrowthForm()" type="code"/>
+          <Connection code="getItemDiet()" type="code"/>
         </Property>
       </Properties>
     </Component>

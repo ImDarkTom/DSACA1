@@ -11,6 +11,7 @@ import dsaca1.models.FaunaSpecies;
 import dsaca1.models.FloraSpecies;
 import dsaca1.models.GreenArea;
 import dsaca1.models.Species;
+import dsaca1.ui.FaunaListItem;
 import dsaca1.ui.FloraListItem;
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -96,16 +97,40 @@ public class MainGUI extends javax.swing.JFrame {
         panel.repaint();
     }
     
+    private void setFloraPageFields(FloraSpecies species) {
+        floraNameTF.setText(species.getName());
+        floraDescriptionTF.setText(species.getDescription());
+        floraNomenclatureTF.setText(species.getNomenclature());
+        floraGrowthTypeTF.setText(species.getGrowthForm());
+    }
+    
+    private void setFaunaPageFields(FaunaSpecies species) {
+        faunaNameTF.setText(species.getName());
+        faunaDescriptionTF.setText(species.getDescription());
+        faunaNomenclatureTF.setText(species.getNomenclature());
+        faunaDietCB.setSelectedItem(species.getDiet());
+    }
+    
     private void refreshFloraList() {
         SLList<FloraSpecies> floraList = AppState.getFloraSpecies().inOrderTraversal();
         
         floraListPanel.removeAll();
 
         for (FloraSpecies species : floraList) {
-            floraListPanel.add(new FloraListItem(species, (t) -> {
-                AppState.getFloraSpecies().delete(t);
-                refreshFloraList();
-            }));
+            floraListPanel.add(new FloraListItem(
+                species, 
+                (t) -> {
+                    AppState.getFloraSpecies().delete(t);
+                    refreshFloraList();
+                },
+                (t) -> {
+                    setFloraPageFields(t);
+                    
+                    // Remove the item after we have loaded it into the editor so it can be saved again
+                    AppState.getFloraSpecies().delete(t);
+                    refreshFloraList();
+                }
+            ));
         }
 
         floraListPanel.revalidate();
@@ -116,16 +141,30 @@ public class MainGUI extends javax.swing.JFrame {
     }
     
     private void refreshFaunaList() {
-        refreshList(
-                faunaListPanel,
-                AppState.getFaunaSpecies().inOrderTraversal(),
-                (t) -> {
-                    AppState.getFaunaSpecies().delete(t);
-                    refreshFaunaList();
-                }
-        );
-        
         SLList<FaunaSpecies> faunaList = AppState.getFaunaSpecies().inOrderTraversal();
+        
+        faunaListPanel.removeAll();
+
+        for (FaunaSpecies species : faunaList) {
+            faunaListPanel.add(new FaunaListItem(
+                    species,
+                    (t) -> {
+                        AppState.getFaunaSpecies().delete(t);
+                        refreshFaunaList();
+                    },
+                    (t) -> {
+                        setFaunaPageFields(t);
+
+                        // Remove the item after we have loaded it into the editor so it can be saved again
+                        AppState.getFaunaSpecies().delete(t);
+                        refreshFaunaList();
+                    }
+            ));
+        }
+
+        faunaListPanel.revalidate();
+        faunaListPanel.repaint();
+        
         greenAreaFaunaList.clearSelection();
         greenAreaFaunaList.setModel(convertSLLToListModel(faunaList));
     }
@@ -211,14 +250,15 @@ public class MainGUI extends javax.swing.JFrame {
         faunaNomenclatureTF = new javax.swing.JTextField();
         faunaDescriptionLbl = new javax.swing.JLabel();
         faunaDescriptionTF = new javax.swing.JTextField();
-        faunaListPanel = new javax.swing.JPanel();
         addFaunaBtn = new javax.swing.JButton();
         faunaDietCB = new javax.swing.JComboBox<>();
         faunaDietLbl = new javax.swing.JLabel();
+        faunaListScrollPane = new javax.swing.JScrollPane();
+        faunaListPanel = new javax.swing.JPanel();
         greenAreasTabPanel = new javax.swing.JPanel();
         greenAreaListScrollPane = new javax.swing.JScrollPane();
         greenAreasList = new javax.swing.JList<>();
-        newGreenAreaBtn = new javax.swing.JButton();
+        greenAreaDeselectBtn = new javax.swing.JButton();
         deleteGreenAreaBtn = new javax.swing.JButton();
         greenAreaNameLbl = new javax.swing.JLabel();
         greenAreaNameTF = new javax.swing.JTextField();
@@ -236,13 +276,14 @@ public class MainGUI extends javax.swing.JFrame {
 
         floraNameLbl.setText("Name");
 
+        addFloraLbl.setFont(new java.awt.Font("Liberation Sans", 1, 13)); // NOI18N
         addFloraLbl.setText("Add a flora species");
 
         floraNomenclatureLbl.setText("Nomenclature");
 
         floraDescriptionLbl.setText("Description");
 
-        addFloraBtn.setText("Add");
+        addFloraBtn.setText("Save flora");
         addFloraBtn.addActionListener(this::addFloraBtnActionPerformed);
 
         floraGrowthTypeLbl.setText("Growth type");
@@ -250,6 +291,7 @@ public class MainGUI extends javax.swing.JFrame {
         floraListScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         floraListScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
+        floraListPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         floraListPanel.setLayout(new javax.swing.BoxLayout(floraListPanel, javax.swing.BoxLayout.Y_AXIS));
         floraListScrollPane.setViewportView(floraListPanel);
 
@@ -317,14 +359,12 @@ public class MainGUI extends javax.swing.JFrame {
 
         faunaNameLbl.setText("Name");
 
+        addFaunaLbl.setFont(new java.awt.Font("Liberation Sans", 1, 13)); // NOI18N
         addFaunaLbl.setText("Add a fauna species");
 
         faunaNomenclatureLbl.setText("Nomenclature");
 
         faunaDescriptionLbl.setText("Description");
-
-        faunaListPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        faunaListPanel.setLayout(new javax.swing.BoxLayout(faunaListPanel, javax.swing.BoxLayout.Y_AXIS));
 
         addFaunaBtn.setText("Add");
         addFaunaBtn.addActionListener(this::addFaunaBtnActionPerformed);
@@ -333,6 +373,10 @@ public class MainGUI extends javax.swing.JFrame {
 
         faunaDietLbl.setText("Diet");
 
+        faunaListPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        faunaListPanel.setLayout(new javax.swing.BoxLayout(faunaListPanel, javax.swing.BoxLayout.Y_AXIS));
+        faunaListScrollPane.setViewportView(faunaListPanel);
+
         javax.swing.GroupLayout faunaTabPanelLayout = new javax.swing.GroupLayout(faunaTabPanel);
         faunaTabPanel.setLayout(faunaTabPanelLayout);
         faunaTabPanelLayout.setHorizontalGroup(
@@ -340,30 +384,27 @@ public class MainGUI extends javax.swing.JFrame {
             .addGroup(faunaTabPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(faunaTabPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(faunaTabPanelLayout.createSequentialGroup()
-                        .addComponent(addFaunaLbl)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(faunaTabPanelLayout.createSequentialGroup()
-                        .addGroup(faunaTabPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(faunaTabPanelLayout.createSequentialGroup()
-                                .addComponent(faunaDescriptionLbl)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(faunaDescriptionTF, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, faunaTabPanelLayout.createSequentialGroup()
-                                .addComponent(faunaNameLbl)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(faunaNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(faunaTabPanelLayout.createSequentialGroup()
-                                .addComponent(faunaNomenclatureLbl)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(faunaNomenclatureTF, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(addFaunaBtn)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, faunaTabPanelLayout.createSequentialGroup()
-                                .addComponent(faunaDietLbl)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(faunaDietCB, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(faunaListPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)))
+                    .addComponent(addFaunaLbl)
+                    .addGroup(faunaTabPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(faunaTabPanelLayout.createSequentialGroup()
+                            .addComponent(faunaDescriptionLbl)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(faunaDescriptionTF, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, faunaTabPanelLayout.createSequentialGroup()
+                            .addComponent(faunaNameLbl)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(faunaNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(faunaTabPanelLayout.createSequentialGroup()
+                            .addComponent(faunaNomenclatureLbl)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(faunaNomenclatureTF, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(addFaunaBtn)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, faunaTabPanelLayout.createSequentialGroup()
+                            .addComponent(faunaDietLbl)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(faunaDietCB, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(faunaListScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
                 .addContainerGap())
         );
         faunaTabPanelLayout.setVerticalGroup(
@@ -372,27 +413,27 @@ public class MainGUI extends javax.swing.JFrame {
                 .addGap(7, 7, 7)
                 .addComponent(addFaunaLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(faunaTabPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(faunaTabPanelLayout.createSequentialGroup()
-                        .addGroup(faunaTabPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(faunaNameLbl)
-                            .addComponent(faunaNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(faunaTabPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(faunaNomenclatureLbl)
-                            .addComponent(faunaNomenclatureTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(faunaTabPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(faunaDescriptionLbl)
-                            .addComponent(faunaDescriptionTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(faunaTabPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(faunaDietCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(faunaDietLbl))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(addFaunaBtn)
-                        .addGap(0, 296, Short.MAX_VALUE))
-                    .addComponent(faunaListPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(faunaTabPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(faunaNameLbl)
+                    .addComponent(faunaNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(faunaTabPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(faunaNomenclatureLbl)
+                    .addComponent(faunaNomenclatureTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(faunaTabPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(faunaDescriptionLbl)
+                    .addComponent(faunaDescriptionTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(faunaTabPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(faunaDietCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(faunaDietLbl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addFaunaBtn)
+                .addContainerGap(302, Short.MAX_VALUE))
+            .addGroup(faunaTabPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(faunaListScrollPane)
                 .addContainerGap())
         );
 
@@ -401,8 +442,9 @@ public class MainGUI extends javax.swing.JFrame {
         greenAreasList.addListSelectionListener(this::greenAreasListValueChanged);
         greenAreaListScrollPane.setViewportView(greenAreasList);
 
-        newGreenAreaBtn.setText("New");
-        newGreenAreaBtn.addActionListener(this::newGreenAreaBtnActionPerformed);
+        greenAreaDeselectBtn.setText("Deselect");
+        greenAreaDeselectBtn.setEnabled(false);
+        greenAreaDeselectBtn.addActionListener(this::greenAreaDeselectBtnActionPerformed);
 
         deleteGreenAreaBtn.setText("Delete");
         deleteGreenAreaBtn.setEnabled(false);
@@ -430,7 +472,7 @@ public class MainGUI extends javax.swing.JFrame {
                 .addGroup(greenAreasTabPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(greenAreaListScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(greenAreasTabPanelLayout.createSequentialGroup()
-                        .addComponent(newGreenAreaBtn)
+                        .addComponent(greenAreaDeselectBtn)
                         .addGap(78, 78, 78)))
                 .addGroup(greenAreasTabPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(greenAreasTabPanelLayout.createSequentialGroup()
@@ -449,7 +491,7 @@ public class MainGUI extends javax.swing.JFrame {
                                     .addGroup(greenAreasTabPanelLayout.createSequentialGroup()
                                         .addComponent(greenAreaFaunaLbl)
                                         .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(greenAreaFaunaListScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)))))
+                                    .addComponent(greenAreaFaunaListScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, greenAreasTabPanelLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(addGreenAreaBtn)
@@ -477,7 +519,7 @@ public class MainGUI extends javax.swing.JFrame {
                     .addComponent(greenAreaListScrollPane))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(greenAreasTabPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(newGreenAreaBtn)
+                    .addComponent(greenAreaDeselectBtn)
                     .addComponent(deleteGreenAreaBtn)
                     .addComponent(addGreenAreaBtn))
                 .addContainerGap())
@@ -510,6 +552,9 @@ public class MainGUI extends javax.swing.JFrame {
                     floraGrowthTypeTF.getText()
                 )
             );
+            
+            // Lazy way to clear all fields
+            setFloraPageFields(new FloraSpecies("", "", "", ""));
 
             refreshFloraList();
         } catch (Exception e) {
@@ -528,6 +573,8 @@ public class MainGUI extends javax.swing.JFrame {
                 )
             );
 
+            setFaunaPageFields(new FaunaSpecies("", "", "", Diet.HERBIVORE));
+            
             refreshFaunaList();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error adding item: " + e.getMessage());
@@ -554,6 +601,8 @@ public class MainGUI extends javax.swing.JFrame {
             
             greenAreaFaunaList.clearSelection();
             greenAreaFloraList.clearSelection();
+            
+            greenAreaDeselectBtn.setEnabled(false);
             return;
         }
         
@@ -561,16 +610,17 @@ public class MainGUI extends javax.swing.JFrame {
 //        editGreenAreaBtn.setEnabled(true);
         deleteGreenAreaBtn.setEnabled(true);
         addGreenAreaBtn.setEnabled(false);
+        greenAreaDeselectBtn.setEnabled(true);
         
         greenAreaFloraList.setSelectedIndices(indicesInModelThatAppearInDLList(greenAreaFloraList.getModel(), selected.getFlora()));
         greenAreaFaunaList.setSelectedIndices(indicesInModelThatAppearInDLList(greenAreaFaunaList.getModel(), selected.getFauna()));
     }//GEN-LAST:event_greenAreasListValueChanged
 
-    private void newGreenAreaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGreenAreaBtnActionPerformed
+    private void greenAreaDeselectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_greenAreaDeselectBtnActionPerformed
         if (greenAreasList.getSelectedIndex() != -1) {
             greenAreasList.clearSelection();
         }
-    }//GEN-LAST:event_newGreenAreaBtnActionPerformed
+    }//GEN-LAST:event_greenAreaDeselectBtnActionPerformed
 
     private void addGreenAreaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addGreenAreaBtnActionPerformed
         String toBeAdded = greenAreaNameTF.getText();
@@ -582,8 +632,11 @@ public class MainGUI extends javax.swing.JFrame {
         DLList<FloraSpecies> selectedFlora = toDLList(greenAreaFloraList.getSelectedValuesList());
         DLList<FaunaSpecies> selectedFauna = toDLList(greenAreaFaunaList.getSelectedValuesList());
         
-        AppState.getGreenAreas().add(new GreenArea(greenAreaNameTF.getText(), selectedFlora, selectedFauna));
+        GreenArea created = new GreenArea(greenAreaNameTF.getText(), selectedFlora, selectedFauna);
+        AppState.getGreenAreas().add(created);
         refreshGreenAreasList();
+        
+        greenAreasList.setSelectedValue(created, true);
     }//GEN-LAST:event_addGreenAreaBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -598,6 +651,7 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<Diet> faunaDietCB;
     private javax.swing.JLabel faunaDietLbl;
     private javax.swing.JPanel faunaListPanel;
+    private javax.swing.JScrollPane faunaListScrollPane;
     private javax.swing.JLabel faunaNameLbl;
     private javax.swing.JTextField faunaNameTF;
     private javax.swing.JLabel faunaNomenclatureLbl;
@@ -614,6 +668,7 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JLabel floraNomenclatureLbl;
     private javax.swing.JTextField floraNomenclatureTF;
     private javax.swing.JPanel floraTabPane;
+    private javax.swing.JButton greenAreaDeselectBtn;
     private javax.swing.JLabel greenAreaFaunaLbl;
     private javax.swing.JList<FaunaSpecies> greenAreaFaunaList;
     private javax.swing.JScrollPane greenAreaFaunaListScroll;
@@ -625,7 +680,6 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JTextField greenAreaNameTF;
     private javax.swing.JList<GreenArea> greenAreasList;
     private javax.swing.JPanel greenAreasTabPanel;
-    private javax.swing.JButton newGreenAreaBtn;
     private javax.swing.JTabbedPane tabbedPane;
     // End of variables declaration//GEN-END:variables
 }
