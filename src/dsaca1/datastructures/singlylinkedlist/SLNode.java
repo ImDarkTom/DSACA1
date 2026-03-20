@@ -7,10 +7,11 @@ package dsaca1.datastructures.singlylinkedlist;
 /**
  *
  * @author tom
+ * @param <T> The data type each list item stores.
  */
 public class SLNode<T> {
-    T data;
-    SLNode<T> next;
+    private T data;
+    private SLNode<T> next;
 
     public SLNode(T data, SLNode<T> next) {
         this.data = data;
@@ -19,6 +20,10 @@ public class SLNode<T> {
 
     public T getData() {
         return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
     }
 
     public SLNode<T> getNext() {

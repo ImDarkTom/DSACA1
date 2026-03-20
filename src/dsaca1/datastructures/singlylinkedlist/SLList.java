@@ -42,10 +42,10 @@ public class SLList<T> implements LinearListInterface<T>, Iterable<T> {
         
         int index = 1;
         while (currNode != null) {
-            if (currNode.data == value) {
+            if (currNode.getData() == value) {
                 return index;
             }
-            currNode = currNode.next;
+            currNode = currNode.getNext();
             index++;
         }
         
@@ -88,7 +88,19 @@ public class SLList<T> implements LinearListInterface<T>, Iterable<T> {
     @Override
     public T get(int pos) {
         setCurrent(pos);
-        return currNode.data;
+        return currNode.getData();
+    }
+
+    @Override
+    public void update(T newElem, int pos) {
+        if (pos < 1 || pos > size) {
+            // We can't remove items before the first index or after the last item
+            throw new IndexOutOfBoundsException("Attempting to update item at index " + pos
+                    + " in list of size " + size);
+        }
+
+        setCurrent(pos);
+        currNode.setData(newElem);
     }
 
     @Override

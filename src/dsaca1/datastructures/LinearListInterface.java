@@ -7,15 +7,24 @@ package dsaca1.datastructures;
 /**
  *
  * @author tom
+ * @param <T> The data type each node stores.
  */
 public interface LinearListInterface<T> {
-    public void add(T elem, int pos);
-    public void add(T elem);
     
+    // Create
+    public void add(T elem);
+    public void add(T elem, int pos);
+    
+    // Read
     public T get(int pos);
     
+    // Update
+    public void update(T newElem, int pos);
+    
+    // Delete
     public void remove(int pos);
     
+    // Meta
     public boolean isEmpty();
     
     public int size();

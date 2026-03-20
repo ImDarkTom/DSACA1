@@ -9,7 +9,7 @@ package dsaca1.datastructures.doublylinkedlist;
  * @author tom
  */
 public class DLNode<T> {
-    private final T data;
+    private T data;
     private DLNode<T> next;
     private DLNode<T> prev;
 
@@ -21,6 +21,10 @@ public class DLNode<T> {
 
     public T getData() {
         return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
     }
 
     public DLNode<T> getNext() {

@@ -4,6 +4,8 @@
  */
 package dsaca1;
 
+import dsaca1.tests.AppTests;
+
 /**
  *
  * @author tom
@@ -12,6 +14,9 @@ public class DSACA1 {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DSACA1.class.getName());
 
     public static void main(String[] args) {
+        // Run the tests to make sure the DSAs work
+        AppTests.runTests();
+        
         // Create and populate our DSAs
         AppState.setup();
         
