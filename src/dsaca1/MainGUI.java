@@ -369,8 +369,15 @@ public class MainGUI extends javax.swing.JFrame {
 
         // If we are editing something, update the currently being edited value
         if (AppState.isFaunaBeingEdited()) {
-            AppState.getFaunaSpecies().update(AppState.getFaunaBeingEdited(), toBeAdded);
-            addFaunaBtn.setText("Add");
+            try {
+                AppState.getFaunaSpecies().update(AppState.getFaunaBeingEdited(), toBeAdded);
+                AppState.setFaunaBeingEdited(null);
+                addFaunaBtn.setText("Add");
+                faunaCancelEditBtn.setEnabled(false);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error updating item: " + e.getMessage());
+                return;
+            }
         } else {
             // Otherwise insert a new value
             try {
@@ -410,8 +417,15 @@ public class MainGUI extends javax.swing.JFrame {
         );
 
         if (AppState.isFloraBeingEdited()) {
-            AppState.getFloraSpecies().update(AppState.getFloraBeingEdited(), toBeAdded);
-            addFloraBtn.setText("Add");
+            try {
+                AppState.getFloraSpecies().update(AppState.getFloraBeingEdited(), toBeAdded);
+                AppState.setFloraBeingEdited(null);
+                addFloraBtn.setText("Add");
+                floraCancelEditBtn.setEnabled(false);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error updating item: " + e.getMessage());
+                return;
+            }
         } else {
             try {
                 AppState.getFloraSpecies().insert(toBeAdded);

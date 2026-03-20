@@ -129,12 +129,14 @@ public class BinaryTree<T extends Comparable<T>> implements BinarySearchTreeInte
             throw new IllegalArgumentException("New item or item to update cannot be null.");
         }
         
-        if (search(oldElem) == null) {
+        BTNode<T> oldNode = search(oldElem);
+        if (oldNode == null) {
             throw new IllegalArgumentException("Old value not found in tree:" + oldElem);
         }
         
         if (oldElem.compareTo(newElem) == 0) {
-            // New value is same as old value
+            // same value in in same position, replace value without rebuilding the tree
+            oldNode.setElement(newElem);
             return;
         }
         
