@@ -20,26 +20,29 @@ public class AppState {
     private static final BinaryTree<FloraSpecies> floraSpecies = new BinaryTree<>();
     private static final BinaryTree<FaunaSpecies> faunaSpecies = new BinaryTree<>();
     
+    private static FloraSpecies floraBeingEdited;
+    private static FaunaSpecies faunaBeingEdited;
+    
     private static final SLList<GreenArea> greenAreas = new SLList<>();
     
     public static void setup() {
         // Pheonix Park
-        floraSpecies.insertNode(new FloraSpecies("Oak", "Quercus spp.", "Broadleaf tree.", "Tree"));
+        floraSpecies.insert(new FloraSpecies("Oak", "Quercus spp.", "Broadleaf tree.", "Tree"));
         
-        floraSpecies.insertNode(new FloraSpecies("Ash", "Fraxinus excelsior", "Widespread deciduous tree.", "Tree"));
+        floraSpecies.insert(new FloraSpecies("Ash", "Fraxinus excelsior", "Widespread deciduous tree.", "Tree"));
         
-        floraSpecies.insertNode(new FloraSpecies("Wild Iris", "Iris pseudacorus", "Large yellow wetland flower.", "Flower"));
+        floraSpecies.insert(new FloraSpecies("Wild Iris", "Iris pseudacorus", "Large yellow wetland flower.", "Flower"));
         
-        floraSpecies.insertNode(new FloraSpecies("Lady’s Bedstraw", "Galium verum", "Native meadow herb.", "Flower"));
+        floraSpecies.insert(new FloraSpecies("Lady’s Bedstraw", "Galium verum", "Native meadow herb.", "Flower"));
         
-        floraSpecies.insertNode(new FloraSpecies("Common Bird's‑foot‑trefoil", "Lotus corniculatus", "Small yellow wildflower.", "Flower"));
+        floraSpecies.insert(new FloraSpecies("Common Bird's‑foot‑trefoil", "Lotus corniculatus", "Small yellow wildflower.", "Flower"));
         
         
-        faunaSpecies.insertNode(new FaunaSpecies("Fallow Deer", "Dama dama", "Medium-sized deer.", Diet.HERBIVORE));
+        faunaSpecies.insert(new FaunaSpecies("Fallow Deer", "Dama dama", "Medium-sized deer.", Diet.HERBIVORE));
         
-        faunaSpecies.insertNode(new FaunaSpecies("European Rabbit", "Oryctolagus cuniculus", "Small burrowing mammal.", Diet.HERBIVORE));
+        faunaSpecies.insert(new FaunaSpecies("European Rabbit", "Oryctolagus cuniculus", "Small burrowing mammal.", Diet.HERBIVORE));
         
-        faunaSpecies.insertNode(new FaunaSpecies("Red Fox", "Vulpes vulpes", "Reddish-coated predator.", Diet.OMNIVORE));
+        faunaSpecies.insert(new FaunaSpecies("Red Fox", "Vulpes vulpes", "Reddish-coated predator.", Diet.OMNIVORE));
         
         
         
@@ -74,5 +77,29 @@ public class AppState {
 
     public static SLList<GreenArea> getGreenAreas() {
         return greenAreas;
+    }
+
+    public static void setFloraBeingEdited(FloraSpecies floraBeingEdited) {
+        AppState.floraBeingEdited = floraBeingEdited;
+    }
+
+    public static FloraSpecies getFloraBeingEdited() {
+        return floraBeingEdited;
+    }
+    
+    public static boolean isFloraBeingEdited() {
+        return floraBeingEdited != null;
+    }
+
+    public static void setFaunaBeingEdited(FaunaSpecies faunaBeingEdited) {
+        AppState.faunaBeingEdited = faunaBeingEdited;
+    }
+
+    public static FaunaSpecies getFaunaBeingEdited() {
+        return faunaBeingEdited;
+    }
+    
+    public static boolean isFaunaBeingEdited() {
+        return faunaBeingEdited != null;
     }
 }

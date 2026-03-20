@@ -4,6 +4,7 @@
  */
 package dsaca1.datastructures.binarysearchtree;
 
+import dsaca1.datastructures.BinarySearchTreeInterface;
 import dsaca1.datastructures.singlylinkedlist.SLList;
 
 /**
@@ -11,7 +12,7 @@ import dsaca1.datastructures.singlylinkedlist.SLList;
  * @author tom
  * @param <T> The data type each tree node holds.
  */
-public class BinaryTree<T extends Comparable<T>> {
+public class BinaryTree<T extends Comparable<T>> implements BinarySearchTreeInterface<T> {
     private BTNode<T> root;
     
     public BinaryTree() {
@@ -24,17 +25,13 @@ public class BinaryTree<T extends Comparable<T>> {
     
     // Inserting a Node
     // using element datatype
-    public void insertNode(T elem) {
+    @Override
+    public void insert(T elem) {
         insertNode(root, new BTNode<>(elem));
     }
     
-    // using a pre-created node
-    public void insertNode(BTNode<T> newNode) {
-        insertNode(root, newNode);
-    }
-    
-    //
-    public void insertNode(BTNode<T> startNode, BTNode<T> newNode) {
+
+    private void insertNode(BTNode<T> startNode, BTNode<T> newNode) {
         // if the tree is empty, the newNode becames the root of the tree
         if (root == null) {
             root = newNode;
@@ -65,27 +62,28 @@ public class BinaryTree<T extends Comparable<T>> {
     }
     
     // Searching the tree
-    
-    public BTNode search(T value, BTNode<T> startNode) {
+    @Override
+    public BTNode search(T elem, BTNode<T> startNode) {
         if (startNode == null) {
             return null;
         }
         
-        int comparison = value.compareTo(startNode.getElement());
+        int comparison = elem.compareTo(startNode.getElement());
 
         if (comparison == 0) {
-            return startNode; // value found
+            return startNode; // elem found
         } else if (comparison < 0) {
             // Search left subtree
-            return search(value, startNode.getLeftChild());
+            return search(elem, startNode.getLeftChild());
         } else {
             // Search right subtree
-            return search(value, startNode.getRightChild());
+            return search(elem, startNode.getRightChild());
         }
     }
 
     // Using in-order traversal to create an iterable singly-linked list.
     
+    @Override
     public SLList<T> inOrderTraversal() {
         // Use root as default for traversal
         return inOrderTraversal(root);
@@ -111,10 +109,19 @@ public class BinaryTree<T extends Comparable<T>> {
         inOrderTraversalHelper(startNode.getRightChild(), result);
     }
     
+    // Updating an elem (aka delete then insert)
+
+    @Override
+    public void update(T oldElem, T newElem) {
+        delete(oldElem);
+        insert(newElem);
+    }
     
-    // Deleting an element
-    public void delete(T element) {
-        root = deleteHelper(element, root);
+    
+    // Deleting an elem
+    @Override
+    public void delete(T elem) {
+        root = deleteHelper(elem, root);
     }
     
     private BTNode<T> deleteHelper(T element, BTNode<T> startNode) {
@@ -162,6 +169,7 @@ public class BinaryTree<T extends Comparable<T>> {
         return startNode;
     }
     
+    // Helper function used when deleting
     private BTNode<T> findMin(BTNode<T> node) {
         while (node.getLeftChild() != null) {
             node = node.getLeftChild();

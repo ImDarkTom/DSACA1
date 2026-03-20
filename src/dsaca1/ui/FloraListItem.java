@@ -4,6 +4,7 @@
  */
 package dsaca1.ui;
 
+import dsaca1.AppState;
 import dsaca1.models.FloraSpecies;
 import java.util.function.Consumer;
 import javax.swing.JOptionPane;
@@ -26,6 +27,11 @@ public class FloraListItem extends javax.swing.JPanel {
         this.onEdit = onEdit;
         
         initComponents();
+        
+        if (AppState.getFloraBeingEdited() == item) {
+            editBtn.setEnabled(false);
+            deleteBtn.setEnabled(false);
+        }
     }
     
     private String getItemName() {
@@ -125,6 +131,11 @@ public class FloraListItem extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        if (AppState.getFloraBeingEdited() == item) {
+            // We are currently editing this item
+            return;
+        }
+        
         int result = JOptionPane.showConfirmDialog(
             this, 
                 "Are you sure you want to delete \"" + getItemName() + "\"?",
@@ -139,6 +150,9 @@ public class FloraListItem extends javax.swing.JPanel {
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        editBtn.setEnabled(false);
+        deleteBtn.setEnabled(false);
+        
         this.onEdit.accept(this.item);
     }//GEN-LAST:event_editBtnActionPerformed
 

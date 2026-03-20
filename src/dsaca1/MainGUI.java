@@ -124,10 +124,12 @@ public class MainGUI extends javax.swing.JFrame {
                     refreshFloraList();
                 },
                 (t) -> {
+                    AppState.setFloraBeingEdited(t);
                     setFloraPageFields(t);
                     
-                    // Remove the item after we have loaded it into the editor so it can be saved again
-                    AppState.getFloraSpecies().delete(t);
+                    floraCancelEditBtn.setEnabled(true);
+                    addFloraBtn.setText("Edit");
+                    
                     refreshFloraList();
                 }
             ));
@@ -153,10 +155,12 @@ public class MainGUI extends javax.swing.JFrame {
                         refreshFaunaList();
                     },
                     (t) -> {
+                        AppState.setFaunaBeingEdited(t);
                         setFaunaPageFields(t);
-
-                        // Remove the item after we have loaded it into the editor so it can be saved again
-                        AppState.getFaunaSpecies().delete(t);
+                        
+                        faunaCancelEditBtn.setEnabled(true);
+                        addFaunaBtn.setText("Edit");
+                        
                         refreshFaunaList();
                     }
             ));
@@ -242,6 +246,7 @@ public class MainGUI extends javax.swing.JFrame {
         floraGrowthTypeTF = new javax.swing.JTextField();
         floraListScrollPane = new javax.swing.JScrollPane();
         floraListPanel = new javax.swing.JPanel();
+        floraCancelEditBtn = new javax.swing.JButton();
         faunaTabPanel = new javax.swing.JPanel();
         faunaNameLbl = new javax.swing.JLabel();
         faunaNameTF = new javax.swing.JTextField();
@@ -255,6 +260,7 @@ public class MainGUI extends javax.swing.JFrame {
         faunaDietLbl = new javax.swing.JLabel();
         faunaListScrollPane = new javax.swing.JScrollPane();
         faunaListPanel = new javax.swing.JPanel();
+        faunaCancelEditBtn = new javax.swing.JButton();
         greenAreasTabPanel = new javax.swing.JPanel();
         greenAreaListScrollPane = new javax.swing.JScrollPane();
         greenAreasList = new javax.swing.JList<>();
@@ -283,7 +289,7 @@ public class MainGUI extends javax.swing.JFrame {
 
         floraDescriptionLbl.setText("Description");
 
-        addFloraBtn.setText("Save flora");
+        addFloraBtn.setText("Add");
         addFloraBtn.addActionListener(this::addFloraBtnActionPerformed);
 
         floraGrowthTypeLbl.setText("Growth type");
@@ -294,6 +300,10 @@ public class MainGUI extends javax.swing.JFrame {
         floraListPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         floraListPanel.setLayout(new javax.swing.BoxLayout(floraListPanel, javax.swing.BoxLayout.Y_AXIS));
         floraListScrollPane.setViewportView(floraListPanel);
+
+        floraCancelEditBtn.setText("Cancel");
+        floraCancelEditBtn.setEnabled(false);
+        floraCancelEditBtn.addActionListener(this::floraCancelEditBtnActionPerformed);
 
         javax.swing.GroupLayout floraTabPaneLayout = new javax.swing.GroupLayout(floraTabPane);
         floraTabPane.setLayout(floraTabPaneLayout);
@@ -315,7 +325,10 @@ public class MainGUI extends javax.swing.JFrame {
                             .addComponent(floraNomenclatureLbl)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(floraNomenclatureTF, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(addFloraBtn)
+                        .addGroup(floraTabPaneLayout.createSequentialGroup()
+                            .addComponent(addFloraBtn)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(floraCancelEditBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(floraTabPaneLayout.createSequentialGroup()
                             .addComponent(floraGrowthTypeLbl)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -347,8 +360,10 @@ public class MainGUI extends javax.swing.JFrame {
                     .addComponent(floraGrowthTypeLbl)
                     .addComponent(floraGrowthTypeTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(addFloraBtn)
-                .addContainerGap(302, Short.MAX_VALUE))
+                .addGroup(floraTabPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addFloraBtn)
+                    .addComponent(floraCancelEditBtn))
+                .addContainerGap(301, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, floraTabPaneLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(floraListScrollPane)
@@ -377,6 +392,10 @@ public class MainGUI extends javax.swing.JFrame {
         faunaListPanel.setLayout(new javax.swing.BoxLayout(faunaListPanel, javax.swing.BoxLayout.Y_AXIS));
         faunaListScrollPane.setViewportView(faunaListPanel);
 
+        faunaCancelEditBtn.setText("Cancel");
+        faunaCancelEditBtn.setEnabled(false);
+        faunaCancelEditBtn.addActionListener(this::faunaCancelEditBtnActionPerformed);
+
         javax.swing.GroupLayout faunaTabPanelLayout = new javax.swing.GroupLayout(faunaTabPanel);
         faunaTabPanel.setLayout(faunaTabPanelLayout);
         faunaTabPanelLayout.setHorizontalGroup(
@@ -398,7 +417,10 @@ public class MainGUI extends javax.swing.JFrame {
                             .addComponent(faunaNomenclatureLbl)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(faunaNomenclatureTF, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(addFaunaBtn)
+                        .addGroup(faunaTabPanelLayout.createSequentialGroup()
+                            .addComponent(addFaunaBtn)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(faunaCancelEditBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, faunaTabPanelLayout.createSequentialGroup()
                             .addComponent(faunaDietLbl)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -429,8 +451,10 @@ public class MainGUI extends javax.swing.JFrame {
                     .addComponent(faunaDietCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(faunaDietLbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(addFaunaBtn)
-                .addContainerGap(302, Short.MAX_VALUE))
+                .addGroup(faunaTabPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addFaunaBtn)
+                    .addComponent(faunaCancelEditBtn))
+                .addContainerGap(301, Short.MAX_VALUE))
             .addGroup(faunaTabPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(faunaListScrollPane)
@@ -543,42 +567,54 @@ public class MainGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addFloraBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFloraBtnActionPerformed
-        try {
-            AppState.getFloraSpecies().insertNode(
-                new FloraSpecies(
-                    floraNameTF.getText(),
-                    floraNomenclatureTF.getText(),
-                    floraDescriptionTF.getText(),
-                    floraGrowthTypeTF.getText()
-                )
-            );
-            
-            // Lazy way to clear all fields
-            setFloraPageFields(new FloraSpecies("", "", "", ""));
-
-            refreshFloraList();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error adding item: " + e.getMessage());
+        FloraSpecies toBeAdded = new FloraSpecies(
+                floraNameTF.getText(),
+                floraNomenclatureTF.getText(),
+                floraDescriptionTF.getText(),
+                floraGrowthTypeTF.getText()
+        );
+        
+        if (AppState.isFloraBeingEdited()) {
+            AppState.getFloraSpecies().update(AppState.getFloraBeingEdited(), toBeAdded);
+            addFloraBtn.setText("Add");
+        } else {
+            try {
+                AppState.getFloraSpecies().insert(toBeAdded);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error adding item: " + e.getMessage());
+            }
         }
+        
+        // Lazy way to clear all fields
+        setFloraPageFields(new FloraSpecies("", "", "", ""));
+
+        refreshFloraList();
     }//GEN-LAST:event_addFloraBtnActionPerformed
 
     private void addFaunaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFaunaBtnActionPerformed
-        try {
-            AppState.getFaunaSpecies().insertNode(
-                new FaunaSpecies(
-                    faunaNameTF.getText(),
-                    faunaNomenclatureTF.getText(),
-                    faunaDescriptionTF.getText(),
-                    Diet.valueOf(faunaDietCB.getSelectedItem().toString())
-                )
-            );
-
-            setFaunaPageFields(new FaunaSpecies("", "", "", Diet.HERBIVORE));
-            
-            refreshFaunaList();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error adding item: " + e.getMessage());
+        FaunaSpecies toBeAdded = new FaunaSpecies(
+                faunaNameTF.getText(),
+                faunaNomenclatureTF.getText(),
+                faunaDescriptionTF.getText(),
+                Diet.valueOf(faunaDietCB.getSelectedItem().toString())
+        );
+        
+        // If we are editing something, update the currently being edited value
+        if (AppState.isFaunaBeingEdited()) {
+            AppState.getFaunaSpecies().update(AppState.getFaunaBeingEdited(), toBeAdded);
+            addFaunaBtn.setText("Add");
+        } else {
+            // Otherwise insert a new value
+            try {
+                AppState.getFaunaSpecies().insert(toBeAdded);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error adding item: " + e.getMessage());
+            }
         }
+        
+        setFaunaPageFields(new FaunaSpecies("", "", "", Diet.HERBIVORE));
+
+        refreshFaunaList();
     }//GEN-LAST:event_addFaunaBtnActionPerformed
 
     private void deleteGreenAreaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteGreenAreaBtnActionPerformed
@@ -639,6 +675,22 @@ public class MainGUI extends javax.swing.JFrame {
         greenAreasList.setSelectedValue(created, true);
     }//GEN-LAST:event_addGreenAreaBtnActionPerformed
 
+    private void floraCancelEditBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_floraCancelEditBtnActionPerformed
+        AppState.setFloraBeingEdited(null);
+        setFloraPageFields(new FloraSpecies("", "", "", ""));
+        refreshFloraList();
+        addFloraBtn.setText("Add");
+        floraCancelEditBtn.setEnabled(false);
+    }//GEN-LAST:event_floraCancelEditBtnActionPerformed
+
+    private void faunaCancelEditBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_faunaCancelEditBtnActionPerformed
+        AppState.setFaunaBeingEdited(null);
+        setFaunaPageFields(new FaunaSpecies("", "", "", Diet.HERBIVORE));
+        refreshFaunaList();
+        addFaunaBtn.setText("Add");
+        faunaCancelEditBtn.setEnabled(false);
+    }//GEN-LAST:event_faunaCancelEditBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addFaunaBtn;
     private javax.swing.JLabel addFaunaLbl;
@@ -646,6 +698,7 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JLabel addFloraLbl;
     private javax.swing.JButton addGreenAreaBtn;
     private javax.swing.JButton deleteGreenAreaBtn;
+    private javax.swing.JButton faunaCancelEditBtn;
     private javax.swing.JLabel faunaDescriptionLbl;
     private javax.swing.JTextField faunaDescriptionTF;
     private javax.swing.JComboBox<Diet> faunaDietCB;
@@ -657,6 +710,7 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JLabel faunaNomenclatureLbl;
     private javax.swing.JTextField faunaNomenclatureTF;
     private javax.swing.JPanel faunaTabPanel;
+    private javax.swing.JButton floraCancelEditBtn;
     private javax.swing.JLabel floraDescriptionLbl;
     private javax.swing.JTextField floraDescriptionTF;
     private javax.swing.JLabel floraGrowthTypeLbl;
