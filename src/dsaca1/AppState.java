@@ -29,7 +29,7 @@ public class AppState {
     public static void setup() {
         // Pheonix Park
         floraSpecies.insert(new FloraSpecies("Oak", "Quercus spp.", "Broadleaf tree.", "Tree"));
-        
+       
         floraSpecies.insert(new FloraSpecies("Ash", "Fraxinus excelsior", "Widespread deciduous tree.", "Tree"));
         
         floraSpecies.insert(new FloraSpecies("Wild Iris", "Iris pseudacorus", "Large yellow wetland flower.", "Flower"));
@@ -46,26 +46,55 @@ public class AppState {
         faunaSpecies.insert(new FaunaSpecies("Red Fox", "Vulpes vulpes", "Reddish-coated predator.", Diet.OMNIVORE));
         
         
-        
-        // Green areas
         DLList<FloraSpecies> pheonixParkFlora = new DLList<>();
         DLList<FaunaSpecies> pheonixParkFauna = new DLList<>();
         
         for (FloraSpecies f : floraSpecies.inOrderTraversal()) {
             // Add oak and ash to list of flora species in pheonix park
-            if (f.getName().equals("Oak") || f.getName().equals("Ash")) {
+            if (f.getName().equals("Oak") || f.getName().equals("Ash") || f.getName().equals("Lady’s Bedstraw")) {
                 pheonixParkFlora.add(f);
             }
         }
 
         for (FaunaSpecies f : faunaSpecies.inOrderTraversal()) {
             // Add fallow deer and red fox to list of fauna species in pheonix park
-            if (f.getName().equals("Fallow Deer") || f.getName().equals("Red Fox")) {
+            if (f.getName().equals("Fallow Deer")) {
                 pheonixParkFauna.add(f);
             }
         }
         
         greenAreas.add(new GreenArea("Pheonix Park", pheonixParkFlora, pheonixParkFauna));
+        
+        
+        
+        // Killarney National Park
+        floraSpecies.insert(new FloraSpecies("Sessile Oak", "Quercus petraea", "Killarney native oak tree.", "Tree"));
+        
+        floraSpecies.insert(new FloraSpecies("Killarney Fern", "Trichomanes speciosum", "Delicate fern, thrives in damp areas.", "Fern"));
+        
+        
+        faunaSpecies.insert(new FaunaSpecies("Red Deer", "Cervus elaphus", "Large deer.", Diet.HERBIVORE));
+
+        faunaSpecies.insert(new FaunaSpecies("Killarney Shad", "Alosa killarnensis", "Freshwater fish.", Diet.CARNIVORE));
+
+        
+        
+        DLList<FloraSpecies> killarneyParkFlora = new DLList<>();
+        DLList<FaunaSpecies> killarneyParkFauna = new DLList<>();
+
+        for (FloraSpecies f : floraSpecies.inOrderTraversal()) {
+            if (f.getName().equals("Sessile Oak") || f.getName().equals("Killarney Fern")) {
+                killarneyParkFlora.add(f);
+            }
+        }
+
+        for (FaunaSpecies f : faunaSpecies.inOrderTraversal()) {
+            if (f.getName().equals("Red Deer") || f.getName().equals("Killarney Shad")) {
+                killarneyParkFauna.add(f);
+            }
+        }
+
+        greenAreas.add(new GreenArea("Killarney National Park", killarneyParkFlora, killarneyParkFauna));
     }
 
     // Getters
