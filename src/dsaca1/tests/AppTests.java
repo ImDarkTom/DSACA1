@@ -7,6 +7,7 @@
 package dsaca1.tests;
 
 import dsaca1.tests.dstests.DLLTests;
+import dsaca1.tests.dstests.SLLTests;
 
 /**
  *
@@ -16,6 +17,9 @@ public class AppTests {
     public static void runTests() {
         DLLTests dLLTests = new DLLTests();
         dLLTests.run();
+        
+        SLLTests sLLTests = new SLLTests();
+        sLLTests.run();
     }
 }
 

@@ -6,17 +6,18 @@ package dsaca1.datastructures.singlylinkedlist;
 
 import dsaca1.datastructures.LinearListInterface;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  *
  * @author tom
+ * @param <T> The data type of the list item contents.
  */
 public class SLList<T> implements LinearListInterface<T>, Iterable<T> {
     private SLNode<T> head;
-    private int size;
-    
     private SLNode<T> currNode;
     private SLNode<T> prevNode;
+    private int size;
     
     public SLList() {
         head = null;
@@ -40,6 +41,7 @@ public class SLList<T> implements LinearListInterface<T>, Iterable<T> {
         currNode = head;
         prevNode = null;
         
+        // Keep incrementing index until we find the item
         int index = 1;
         while (currNode != null) {
             if (currNode.getData() == value) {
@@ -59,11 +61,11 @@ public class SLList<T> implements LinearListInterface<T>, Iterable<T> {
         }
 
         if (pos == 1) {
-            SLNode newNode = new SLNode(elem, head);
+            SLNode<T> newNode = new SLNode<>(elem, head);
             head = newNode;
         } else {
             setCurrent(pos);
-            SLNode newNode = new SLNode(elem, currNode);
+            SLNode<T> newNode = new SLNode<>(elem, currNode);
             prevNode.setNext(newNode);
         }
 
@@ -73,7 +75,7 @@ public class SLList<T> implements LinearListInterface<T>, Iterable<T> {
 
     @Override
     public void add(T elem) {
-        SLNode newNode = new SLNode(elem, null);
+        SLNode<T> newNode = new SLNode<T>(elem, null);
         
         if (head == null) {
             head = newNode;
@@ -87,6 +89,12 @@ public class SLList<T> implements LinearListInterface<T>, Iterable<T> {
 
     @Override
     public T get(int pos) {
+        if (pos < 1 || pos > size) {
+            // We can't get items before the first index or after the last item
+            throw new IndexOutOfBoundsException("Attempting to get item at index " + pos
+                    + " in list of size " + size);
+        }
+        
         setCurrent(pos);
         return currNode.getData();
     }
@@ -94,7 +102,7 @@ public class SLList<T> implements LinearListInterface<T>, Iterable<T> {
     @Override
     public void update(T newElem, int pos) {
         if (pos < 1 || pos > size) {
-            // We can't remove items before the first index or after the last item
+            // We can't update items before the first index or after the last item
             throw new IndexOutOfBoundsException("Attempting to update item at index " + pos
                     + " in list of size " + size);
         }
@@ -105,6 +113,12 @@ public class SLList<T> implements LinearListInterface<T>, Iterable<T> {
 
     @Override
     public void remove(int pos) {
+        if (pos < 1 || pos > size) {
+            // We can't remove items before the first index or after the last item
+            throw new IndexOutOfBoundsException("Attempting to remove item at index " + pos
+                    + " in list of size " + size);
+        }
+        
         if (pos == 1) {
             head = head.getNext();
         } else {
@@ -124,23 +138,6 @@ public class SLList<T> implements LinearListInterface<T>, Iterable<T> {
     public int size() {
         return size;
     }
-    
-    public String printList() {
-        StringBuilder output = new StringBuilder();
-        SLNode tempNode = head;
-        while (tempNode != null) {
-            output.append(", ");
-            output.append(tempNode.toString());
-            tempNode = tempNode.getNext();
-        }
-        
-        return output.toString();
-    }
-
-    @Override
-    public String toString() {
-        return printList();
-    }
 
     @Override
     public Iterator<T> iterator() {
@@ -158,7 +155,7 @@ public class SLList<T> implements LinearListInterface<T>, Iterable<T> {
             @Override
             public T next() {
                 if (current == null) {
-                    throw new IndexOutOfBoundsException();
+                    throw new NoSuchElementException();
                 }
                 T data = current.getData();
                 current = current.getNext();
@@ -167,5 +164,23 @@ public class SLList<T> implements LinearListInterface<T>, Iterable<T> {
         };
         
         return it;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        SLNode<T> current = head;
+
+        while (current != null) {
+            builder.append(current.getData());
+
+            if (current.getNext() != null) {
+                builder.append(", ");
+            }
+
+            current = current.getNext();
+        }
+
+        return builder.toString();
     }
 }
