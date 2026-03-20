@@ -115,6 +115,7 @@ public class GreenAreasTab extends javax.swing.JPanel {
         addBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
+        greenAreasList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         greenAreasList.addListSelectionListener(this::greenAreasListValueChanged);
         greenAreaListScrollPane.setViewportView(greenAreasList);
 
@@ -212,22 +213,25 @@ public class GreenAreasTab extends javax.swing.JPanel {
         GreenArea selected = greenAreasList.getSelectedValue();
         if (selected == null) {
             nameTF.setText("");
-            // editGreenAreaBtn.setEnabled(false);
             deleteBtn.setEnabled(false);
             addBtn.setEnabled(true);
 
             faunaListList.clearSelection();
             floraListList.clearSelection();
-
+            
             deselectBtn.setEnabled(false);
+            addBtn.setText("Add");
+            
+            AppState.setSelectedGreenArea(null);
             return;
         }
 
+        AppState.setSelectedGreenArea(selected);
         nameTF.setText(selected.getName());
-        // editGreenAreaBtn.setEnabled(true);
         deleteBtn.setEnabled(true);
-        addBtn.setEnabled(false);
         deselectBtn.setEnabled(true);
+
+        addBtn.setText("Save edit");
 
         floraListList.setSelectedIndices(indicesInModelThatAppearInDLList(floraListList.getModel(), selected.getFlora()));
         faunaListList.setSelectedIndices(indicesInModelThatAppearInDLList(faunaListList.getModel(), selected.getFauna()));
@@ -237,6 +241,7 @@ public class GreenAreasTab extends javax.swing.JPanel {
         if (greenAreasList.getSelectedIndex() != -1) {
             greenAreasList.clearSelection();
         }
+        AppState.setSelectedGreenArea(null);
     }//GEN-LAST:event_deselectBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
@@ -255,12 +260,21 @@ public class GreenAreasTab extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Name cannot be blank.");
             return;
         }
-
+        
         DLList<FloraSpecies> selectedFlora = toDLList(floraListList.getSelectedValuesList());
         DLList<FaunaSpecies> selectedFauna = toDLList(faunaListList.getSelectedValuesList());
-
+        
         GreenArea created = new GreenArea(nameTF.getText(), selectedFlora, selectedFauna);
-        AppState.getGreenAreas().add(created);
+        
+        if (AppState.isAGreenAreaSelected()) {
+            // Editing
+            AppState.getGreenAreas().update(AppState.getSelectedGreenArea(), created);
+        } else {
+            // Addding new
+            AppState.getGreenAreas().add(created);
+        }
+        
+        
         refreshGreenAreasList();
 
         greenAreasList.setSelectedValue(created, true);

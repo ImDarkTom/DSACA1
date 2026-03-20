@@ -18,13 +18,13 @@ public class SLLTests extends TestCase {
     @Override
     public void run() {
         // Creating a list
-        SLList<Integer> list = new SLList<>();
+        SLList<Float> list = new SLList<>();
         
         // Adding items
         log("Adding items 10, 30, 20...");
-        list.add(10);
-        list.add(30);
-        list.add(20);
+        list.add(10F);
+        list.add(30F);
+        list.add(20F);
         
         // Get item
         log("Getting item 1: " + list.get(1));
@@ -33,7 +33,7 @@ public class SLLTests extends TestCase {
         log("Getting all items: " + list.toString());
         
         // Updating
-        list.update(15, 2);
+        list.update(15.0F, 2);
         log("List after updating 2nd item: " + list.toString());
         
         // Deleting

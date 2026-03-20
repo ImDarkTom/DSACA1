@@ -24,6 +24,7 @@ public class AppState {
     private static FaunaSpecies faunaBeingEdited;
     
     private static final SLList<GreenArea> greenAreas = new SLList<>();
+    private static GreenArea selectedGreenArea;
     
     public static void setup() {
         // Pheonix Park
@@ -67,6 +68,7 @@ public class AppState {
         greenAreas.add(new GreenArea("Pheonix Park", pheonixParkFlora, pheonixParkFauna));
     }
 
+    // Getters
     public static BinaryTree<FloraSpecies> getFloraSpecies() {
         return floraSpecies;
     }
@@ -79,6 +81,8 @@ public class AppState {
         return greenAreas;
     }
 
+    
+    // Flora being edited
     public static void setFloraBeingEdited(FloraSpecies floraBeingEdited) {
         AppState.floraBeingEdited = floraBeingEdited;
     }
@@ -91,6 +95,8 @@ public class AppState {
         return floraBeingEdited != null;
     }
 
+    
+    // Fauna being edited
     public static void setFaunaBeingEdited(FaunaSpecies faunaBeingEdited) {
         AppState.faunaBeingEdited = faunaBeingEdited;
     }
@@ -101,5 +107,18 @@ public class AppState {
     
     public static boolean isFaunaBeingEdited() {
         return faunaBeingEdited != null;
+    }
+    
+    // Selected green area
+    public static void setSelectedGreenArea(GreenArea selectedGreenArea) {
+        AppState.selectedGreenArea = selectedGreenArea;
+    }
+
+    public static GreenArea getSelectedGreenArea() {
+        return selectedGreenArea;
+    }
+    
+    public static boolean isAGreenAreaSelected() {
+        return selectedGreenArea != null;
     }
 }

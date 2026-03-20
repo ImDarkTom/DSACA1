@@ -98,6 +98,45 @@ public class SLList<T> implements LinearListInterface<T>, Iterable<T> {
         setCurrent(pos);
         return currNode.getData();
     }
+    
+    private SLNode<T> search(T elem) {
+        if (elem == null) {
+            throw new NullPointerException("Item to search for cannot be null.");
+        }
+        
+        SLNode<T> current = head;
+        
+        while (current != null) {
+            if (elem.equals(current.getData())) {
+                return current;
+            }
+            current = current.getNext();
+        }
+        
+        return null;
+    }
+    
+    public void update(T oldElem, T newElem) {
+        if (oldElem == null || newElem == null) {
+            throw new IllegalArgumentException("New item or item to update cannot be null.");
+        }
+        
+        if (oldElem.equals(newElem)) {
+            // New value is same as old value
+            return;
+        }
+
+        SLNode<T> oldValueInList = search(oldElem);
+        if (oldValueInList == null) {
+            throw new IllegalArgumentException("Old value not found in list:" + oldElem);
+        }
+
+        if (search(newElem) != null) {
+            throw new IllegalArgumentException("Duplicate value when adding to tree:" + newElem);
+        }
+        
+        oldValueInList.setData(newElem);
+    }
 
     @Override
     public void update(T newElem, int pos) {
