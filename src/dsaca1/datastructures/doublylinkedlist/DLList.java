@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * Doubly Linked List ADT
+ * Doubly-Linked List ADT
  * @author tom
  * @param <T> The data type each node stores.
  */

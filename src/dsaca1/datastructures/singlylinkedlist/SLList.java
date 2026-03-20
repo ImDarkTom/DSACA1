@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- *
+ * Singly-Linked List ADT
  * @author tom
  * @param <T> The data type of the list item contents.
  */
