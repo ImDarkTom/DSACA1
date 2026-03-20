@@ -12,13 +12,11 @@ public abstract class Species {
     String name;
     String nomenclature;
     String description;
-    String icon;
 
-    public Species(String name, String nomenclature, String description, String icon) {
+    public Species(String name, String nomenclature, String description) {
         this.name = name;
         this.nomenclature = nomenclature;
         this.description = description;
-        this.icon = icon;
     }
 
     public String getName() {
@@ -33,10 +31,6 @@ public abstract class Species {
         return description;
     }
 
-    public String getIcon() {
-        return icon;
-    }
-
     
     public void setNomenclature(String nomenclature) {
         this.nomenclature = nomenclature;
@@ -44,10 +38,6 @@ public abstract class Species {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon;
     }
 
     @Override

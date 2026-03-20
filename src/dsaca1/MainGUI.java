@@ -28,30 +28,17 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.ListModel;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.BevelBorder;
-import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 /**
  *
  * @author tom
  */
 public class MainGUI extends javax.swing.JFrame {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MainGUI.class.getName());
-
     /**
      * Creates new form MainGUI
      */
     public MainGUI() {
-        try {
-            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-                | UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
-        
         initComponents();
         
         refreshFloraList();
@@ -211,12 +198,11 @@ public class MainGUI extends javax.swing.JFrame {
         floraNomenclatureTF = new javax.swing.JTextField();
         floraDescriptionLbl = new javax.swing.JLabel();
         floraDescriptionTF = new javax.swing.JTextField();
-        floraIconLbl = new javax.swing.JLabel();
-        floraIconTF = new javax.swing.JTextField();
-        floraListPanel = new javax.swing.JPanel();
         addFloraBtn = new javax.swing.JButton();
         floraGrowthTypeLbl = new javax.swing.JLabel();
         floraGrowthTypeTF = new javax.swing.JTextField();
+        floraListScrollPane = new javax.swing.JScrollPane();
+        floraListPanel = new javax.swing.JPanel();
         faunaTabPanel = new javax.swing.JPanel();
         faunaNameLbl = new javax.swing.JLabel();
         faunaNameTF = new javax.swing.JTextField();
@@ -225,8 +211,6 @@ public class MainGUI extends javax.swing.JFrame {
         faunaNomenclatureTF = new javax.swing.JTextField();
         faunaDescriptionLbl = new javax.swing.JLabel();
         faunaDescriptionTF = new javax.swing.JTextField();
-        faunaIconLbl = new javax.swing.JLabel();
-        faunaIconTF = new javax.swing.JTextField();
         faunaListPanel = new javax.swing.JPanel();
         addFaunaBtn = new javax.swing.JButton();
         faunaDietCB = new javax.swing.JComboBox<>();
@@ -252,31 +236,22 @@ public class MainGUI extends javax.swing.JFrame {
 
         floraNameLbl.setText("Name");
 
-        floraNameTF.addActionListener(this::floraNameTFActionPerformed);
-
         addFloraLbl.setText("Add a flora species");
 
         floraNomenclatureLbl.setText("Nomenclature");
 
-        floraNomenclatureTF.addActionListener(this::floraNomenclatureTFActionPerformed);
-
         floraDescriptionLbl.setText("Description");
-
-        floraDescriptionTF.addActionListener(this::floraDescriptionTFActionPerformed);
-
-        floraIconLbl.setText("Icon");
-
-        floraIconTF.addActionListener(this::floraIconTFActionPerformed);
-
-        floraListPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        floraListPanel.setLayout(new javax.swing.BoxLayout(floraListPanel, javax.swing.BoxLayout.Y_AXIS));
 
         addFloraBtn.setText("Add");
         addFloraBtn.addActionListener(this::addFloraBtnActionPerformed);
 
         floraGrowthTypeLbl.setText("Growth type");
 
-        floraGrowthTypeTF.addActionListener(this::floraGrowthTypeTFActionPerformed);
+        floraListScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        floraListScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        floraListPanel.setLayout(new javax.swing.BoxLayout(floraListPanel, javax.swing.BoxLayout.Y_AXIS));
+        floraListScrollPane.setViewportView(floraListPanel);
 
         javax.swing.GroupLayout floraTabPaneLayout = new javax.swing.GroupLayout(floraTabPane);
         floraTabPane.setLayout(floraTabPaneLayout);
@@ -285,34 +260,27 @@ public class MainGUI extends javax.swing.JFrame {
             .addGroup(floraTabPaneLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(floraTabPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(floraTabPaneLayout.createSequentialGroup()
-                        .addComponent(addFloraLbl)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(floraTabPaneLayout.createSequentialGroup()
-                        .addGroup(floraTabPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(floraTabPaneLayout.createSequentialGroup()
-                                .addComponent(floraIconLbl)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(floraIconTF, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(floraTabPaneLayout.createSequentialGroup()
-                                .addComponent(floraDescriptionLbl)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(floraDescriptionTF, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, floraTabPaneLayout.createSequentialGroup()
-                                .addComponent(floraNameLbl)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(floraNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(floraTabPaneLayout.createSequentialGroup()
-                                .addComponent(floraNomenclatureLbl)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(floraNomenclatureTF, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(addFloraBtn)
-                            .addGroup(floraTabPaneLayout.createSequentialGroup()
-                                .addComponent(floraGrowthTypeLbl)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(floraGrowthTypeTF, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(floraListPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)))
+                    .addGroup(floraTabPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(floraTabPaneLayout.createSequentialGroup()
+                            .addComponent(floraDescriptionLbl)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(floraDescriptionTF, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, floraTabPaneLayout.createSequentialGroup()
+                            .addComponent(floraNameLbl)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(floraNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(floraTabPaneLayout.createSequentialGroup()
+                            .addComponent(floraNomenclatureLbl)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(floraNomenclatureTF, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(addFloraBtn)
+                        .addGroup(floraTabPaneLayout.createSequentialGroup()
+                            .addComponent(floraGrowthTypeLbl)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(floraGrowthTypeTF, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(addFloraLbl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(floraListScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
                 .addContainerGap())
         );
         floraTabPaneLayout.setVerticalGroup(
@@ -321,31 +289,27 @@ public class MainGUI extends javax.swing.JFrame {
                 .addGap(7, 7, 7)
                 .addComponent(addFloraLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(floraTabPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(floraTabPaneLayout.createSequentialGroup()
-                        .addGroup(floraTabPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(floraNameLbl)
-                            .addComponent(floraNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(floraTabPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(floraNomenclatureLbl)
-                            .addComponent(floraNomenclatureTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(floraTabPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(floraDescriptionLbl)
-                            .addComponent(floraDescriptionTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(floraTabPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(floraIconLbl)
-                            .addComponent(floraIconTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(floraTabPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(floraGrowthTypeLbl)
-                            .addComponent(floraGrowthTypeTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(addFloraBtn)
-                        .addGap(0, 262, Short.MAX_VALUE))
-                    .addComponent(floraListPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(floraTabPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(floraNameLbl)
+                    .addComponent(floraNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(floraTabPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(floraNomenclatureLbl)
+                    .addComponent(floraNomenclatureTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(floraTabPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(floraDescriptionLbl)
+                    .addComponent(floraDescriptionTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(floraTabPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(floraGrowthTypeLbl)
+                    .addComponent(floraGrowthTypeTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addFloraBtn)
+                .addContainerGap(302, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, floraTabPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(floraListScrollPane)
                 .addContainerGap())
         );
 
@@ -353,21 +317,11 @@ public class MainGUI extends javax.swing.JFrame {
 
         faunaNameLbl.setText("Name");
 
-        faunaNameTF.addActionListener(this::faunaNameTFActionPerformed);
-
         addFaunaLbl.setText("Add a fauna species");
 
         faunaNomenclatureLbl.setText("Nomenclature");
 
-        faunaNomenclatureTF.addActionListener(this::faunaNomenclatureTFActionPerformed);
-
         faunaDescriptionLbl.setText("Description");
-
-        faunaDescriptionTF.addActionListener(this::faunaDescriptionTFActionPerformed);
-
-        faunaIconLbl.setText("Icon");
-
-        faunaIconTF.addActionListener(this::faunaIconTFActionPerformed);
 
         faunaListPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         faunaListPanel.setLayout(new javax.swing.BoxLayout(faunaListPanel, javax.swing.BoxLayout.Y_AXIS));
@@ -405,13 +359,9 @@ public class MainGUI extends javax.swing.JFrame {
                                 .addComponent(faunaNomenclatureTF, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(addFaunaBtn)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, faunaTabPanelLayout.createSequentialGroup()
-                                .addGroup(faunaTabPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(faunaIconLbl)
-                                    .addComponent(faunaDietLbl))
+                                .addComponent(faunaDietLbl)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(faunaTabPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(faunaDietCB, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(faunaIconTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE))))
+                                .addComponent(faunaDietCB, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addComponent(faunaListPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -437,15 +387,11 @@ public class MainGUI extends javax.swing.JFrame {
                             .addComponent(faunaDescriptionTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(faunaTabPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(faunaIconLbl)
-                            .addComponent(faunaIconTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(faunaTabPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(faunaDietCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(faunaDietLbl))
-                        .addGap(12, 12, 12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(addFaunaBtn)
-                        .addGap(0, 262, Short.MAX_VALUE))
+                        .addGap(0, 296, Short.MAX_VALUE))
                     .addComponent(faunaListPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -554,22 +500,6 @@ public class MainGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void floraNameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_floraNameTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_floraNameTFActionPerformed
-
-    private void floraNomenclatureTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_floraNomenclatureTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_floraNomenclatureTFActionPerformed
-
-    private void floraDescriptionTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_floraDescriptionTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_floraDescriptionTFActionPerformed
-
-    private void floraIconTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_floraIconTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_floraIconTFActionPerformed
-
     private void addFloraBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFloraBtnActionPerformed
         try {
             AppState.getFloraSpecies().insertNode(
@@ -577,7 +507,6 @@ public class MainGUI extends javax.swing.JFrame {
                     floraNameTF.getText(),
                     floraNomenclatureTF.getText(),
                     floraDescriptionTF.getText(),
-                    floraIconTF.getText(),
                     floraGrowthTypeTF.getText()
                 )
             );
@@ -588,22 +517,6 @@ public class MainGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_addFloraBtnActionPerformed
 
-    private void faunaNameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_faunaNameTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_faunaNameTFActionPerformed
-
-    private void faunaNomenclatureTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_faunaNomenclatureTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_faunaNomenclatureTFActionPerformed
-
-    private void faunaDescriptionTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_faunaDescriptionTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_faunaDescriptionTFActionPerformed
-
-    private void faunaIconTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_faunaIconTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_faunaIconTFActionPerformed
-
     private void addFaunaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFaunaBtnActionPerformed
         try {
             AppState.getFaunaSpecies().insertNode(
@@ -611,7 +524,6 @@ public class MainGUI extends javax.swing.JFrame {
                     faunaNameTF.getText(),
                     faunaNomenclatureTF.getText(),
                     faunaDescriptionTF.getText(),
-                    faunaIconTF.getText(),
                     Diet.valueOf(faunaDietCB.getSelectedItem().toString())
                 )
             );
@@ -621,10 +533,6 @@ public class MainGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error adding item: " + e.getMessage());
         }
     }//GEN-LAST:event_addFaunaBtnActionPerformed
-
-    private void floraGrowthTypeTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_floraGrowthTypeTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_floraGrowthTypeTFActionPerformed
 
     private void deleteGreenAreaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteGreenAreaBtnActionPerformed
         GreenArea selected = greenAreasList.getSelectedValue();
@@ -678,31 +586,6 @@ public class MainGUI extends javax.swing.JFrame {
         refreshGreenAreasList();
     }//GEN-LAST:event_addGreenAreaBtnActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new MainGUI().setVisible(true));
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addFaunaBtn;
     private javax.swing.JLabel addFaunaLbl;
@@ -714,8 +597,6 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JTextField faunaDescriptionTF;
     private javax.swing.JComboBox<Diet> faunaDietCB;
     private javax.swing.JLabel faunaDietLbl;
-    private javax.swing.JLabel faunaIconLbl;
-    private javax.swing.JTextField faunaIconTF;
     private javax.swing.JPanel faunaListPanel;
     private javax.swing.JLabel faunaNameLbl;
     private javax.swing.JTextField faunaNameTF;
@@ -726,9 +607,8 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JTextField floraDescriptionTF;
     private javax.swing.JLabel floraGrowthTypeLbl;
     private javax.swing.JTextField floraGrowthTypeTF;
-    private javax.swing.JLabel floraIconLbl;
-    private javax.swing.JTextField floraIconTF;
     private javax.swing.JPanel floraListPanel;
+    private javax.swing.JScrollPane floraListScrollPane;
     private javax.swing.JLabel floraNameLbl;
     private javax.swing.JTextField floraNameTF;
     private javax.swing.JLabel floraNomenclatureLbl;

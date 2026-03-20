@@ -12,8 +12,8 @@ import java.util.function.Consumer;
  * @author tom
  */
 public class FloraListItem extends javax.swing.JPanel {
-    private FloraSpecies item;
-    private Consumer<FloraSpecies> onDelete;
+    private final FloraSpecies item;
+    private final Consumer<FloraSpecies> onDelete;
 
     /**
      * Creates new form FloraListItem
@@ -32,6 +32,14 @@ public class FloraListItem extends javax.swing.JPanel {
     private String getItemNomenclature() {
         return item.getNomenclature();
     }
+    
+    private String getItemGrowthForm() {
+        return item.getGrowthForm();
+    }
+    
+    private String getItemDescription() {
+        return item.getDescription();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -45,10 +53,14 @@ public class FloraListItem extends javax.swing.JPanel {
         nameLbl = new javax.swing.JLabel();
         deleteBtn = new javax.swing.JButton();
         editBtn = new javax.swing.JButton();
+        nomenclatureLbl = new javax.swing.JLabel();
+        growthFormLbl = new javax.swing.JLabel();
+        descriptionLbl = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        setMaximumSize(new java.awt.Dimension(32767, 50));
-        setMinimumSize(new java.awt.Dimension(0, 50));
+        setMaximumSize(new java.awt.Dimension(32767, 96));
+        setMinimumSize(new java.awt.Dimension(0, 96));
+        setName(""); // NOI18N
         setNextFocusableComponent(deleteBtn);
 
         nameLbl.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
@@ -59,27 +71,52 @@ public class FloraListItem extends javax.swing.JPanel {
 
         editBtn.setText("Edit");
 
+        nomenclatureLbl.setFont(new java.awt.Font("Noto Sans", 2, 12)); // NOI18N
+        nomenclatureLbl.setText(getItemNomenclature());
+
+        growthFormLbl.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        growthFormLbl.setText(getItemGrowthForm());
+
+        descriptionLbl.setFont(new java.awt.Font("Noto Sans", 0, 10)); // NOI18N
+        descriptionLbl.setText(getItemDescription());
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(nameLbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
-                .addComponent(editBtn))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(deleteBtn))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(nameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(growthFormLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(descriptionLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(nomenclatureLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(editBtn, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(deleteBtn, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(11, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameLbl)
-                    .addComponent(editBtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                .addComponent(deleteBtn))
+                    .addComponent(growthFormLbl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(editBtn)
+                    .addComponent(nomenclatureLbl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(deleteBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(descriptionLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -90,7 +127,10 @@ public class FloraListItem extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton deleteBtn;
+    private javax.swing.JLabel descriptionLbl;
     private javax.swing.JButton editBtn;
+    private javax.swing.JLabel growthFormLbl;
     private javax.swing.JLabel nameLbl;
+    private javax.swing.JLabel nomenclatureLbl;
     // End of variables declaration//GEN-END:variables
 }

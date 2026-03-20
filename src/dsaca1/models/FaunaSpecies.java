@@ -13,8 +13,9 @@ import dsaca1.enums.Diet;
 public class FaunaSpecies extends Species implements Comparable<FaunaSpecies> {
     Diet diet;
     
-    public FaunaSpecies(String name, String nomenclature, String description, String icon, Diet diet) {
-        super(name, nomenclature, description, icon);
+    public FaunaSpecies(String name, String nomenclature, String description, Diet diet) {
+        super(name, nomenclature, description);
+        this.diet = diet;
     }
 
     public Diet getDiet() {

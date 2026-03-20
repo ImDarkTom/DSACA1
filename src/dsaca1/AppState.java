@@ -24,22 +24,22 @@ public class AppState {
     
     public static void setup() {
         // Pheonix Park
-        floraSpecies.insertNode(new FloraSpecies("Oak", "Quercus spp.", "Broadleaf tree.", "", "Tree"));
+        floraSpecies.insertNode(new FloraSpecies("Oak", "Quercus spp.", "Broadleaf tree.", "Tree"));
         
-        floraSpecies.insertNode(new FloraSpecies("Ash", "Fraxinus excelsior", "Widespread deciduous tree.", "", "Tree"));
+        floraSpecies.insertNode(new FloraSpecies("Ash", "Fraxinus excelsior", "Widespread deciduous tree.", "Tree"));
         
-        floraSpecies.insertNode(new FloraSpecies("Wild Iris", "Iris pseudacorus", "Large yellow wetland flower.", "", "Flower"));
+        floraSpecies.insertNode(new FloraSpecies("Wild Iris", "Iris pseudacorus", "Large yellow wetland flower.", "Flower"));
         
-        floraSpecies.insertNode(new FloraSpecies("Lady’s Bedstraw", "Galium verum", "Native meadow herb.", "", "Flower"));
+        floraSpecies.insertNode(new FloraSpecies("Lady’s Bedstraw", "Galium verum", "Native meadow herb.", "Flower"));
         
-        floraSpecies.insertNode(new FloraSpecies("Common Bird's‑foot‑trefoil", "Lotus corniculatus", "Small yellow wildflower.", "", "Flower"));
+        floraSpecies.insertNode(new FloraSpecies("Common Bird's‑foot‑trefoil", "Lotus corniculatus", "Small yellow wildflower.", "Flower"));
         
         
-        faunaSpecies.insertNode(new FaunaSpecies("Fallow Deer", "Dama dama", "Medium-sized deer.", "", Diet.HERBIVORE));
+        faunaSpecies.insertNode(new FaunaSpecies("Fallow Deer", "Dama dama", "Medium-sized deer.", Diet.HERBIVORE));
         
-        faunaSpecies.insertNode(new FaunaSpecies("European Rabbit", "Oryctolagus cuniculus", "Small burrowing mammal.", "", Diet.HERBIVORE));
+        faunaSpecies.insertNode(new FaunaSpecies("European Rabbit", "Oryctolagus cuniculus", "Small burrowing mammal.", Diet.HERBIVORE));
         
-        faunaSpecies.insertNode(new FaunaSpecies("Red Fox", "Vulpes vulpes", "Reddish-coated predator.", "", Diet.OMNIVORE));
+        faunaSpecies.insertNode(new FaunaSpecies("Red Fox", "Vulpes vulpes", "Reddish-coated predator.", Diet.OMNIVORE));
         
         
         

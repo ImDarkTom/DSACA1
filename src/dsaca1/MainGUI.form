@@ -56,43 +56,33 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="addFloraLbl" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="floraIconLbl" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="floraIconTF" min="-2" pref="197" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="floraDescriptionLbl" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="floraDescriptionTF" min="-2" pref="197" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="floraNameLbl" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="floraNameTF" min="-2" pref="197" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="floraNomenclatureLbl" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="floraNomenclatureTF" min="-2" pref="197" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="addFloraBtn" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="floraGrowthTypeLbl" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="floraGrowthTypeTF" min="-2" pref="197" max="-2" attributes="0"/>
-                                  </Group>
+                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="floraDescriptionLbl" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="floraDescriptionTF" min="-2" pref="197" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="floraListPanel" pref="281" max="32767" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="floraNameLbl" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="floraNameTF" min="-2" pref="197" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="floraNomenclatureLbl" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="floraNomenclatureTF" min="-2" pref="197" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="addFloraBtn" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="floraGrowthTypeLbl" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="floraGrowthTypeTF" min="-2" pref="197" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
+                          <Component id="addFloraLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="floraListScrollPane" pref="293" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -103,38 +93,32 @@
                       <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                       <Component id="addFloraLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="floraNameLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="floraNameTF" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="floraNomenclatureLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="floraNomenclatureTF" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="floraDescriptionLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="floraDescriptionTF" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="floraIconLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="floraIconTF" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="floraGrowthTypeLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="floraGrowthTypeTF" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="addFloraBtn" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="262" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="floraListPanel" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="floraNameLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="floraNameTF" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="floraNomenclatureLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="floraNomenclatureTF" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="floraDescriptionLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="floraDescriptionTF" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="floraGrowthTypeLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="floraGrowthTypeTF" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="addFloraBtn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="302" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="floraListScrollPane" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -147,9 +131,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="floraNameTF">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="floraNameTFActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="addFloraLbl">
               <Properties>
@@ -162,9 +143,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="floraNomenclatureTF">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="floraNomenclatureTFActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="floraDescriptionLbl">
               <Properties>
@@ -172,33 +150,7 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="floraDescriptionTF">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="floraDescriptionTFActionPerformed"/>
-              </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="floraIconLbl">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Icon"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="floraIconTF">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="floraIconTFActionPerformed"/>
-              </Events>
-            </Component>
-            <Container class="javax.swing.JPanel" name="floraListPanel">
-              <Properties>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
-                    <BevelBorder/>
-                  </Border>
-                </Property>
-              </Properties>
-
-              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout">
-                <Property name="axis" type="int" value="1"/>
-              </Layout>
-            </Container>
             <Component class="javax.swing.JButton" name="addFloraBtn">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Add"/>
@@ -213,10 +165,23 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="floraGrowthTypeTF">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="floraGrowthTypeTFActionPerformed"/>
-              </Events>
             </Component>
+            <Container class="javax.swing.JScrollPane" name="floraListScrollPane">
+              <Properties>
+                <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
+                <Property name="verticalScrollBarPolicy" type="int" value="22"/>
+              </Properties>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Container class="javax.swing.JPanel" name="floraListPanel">
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout">
+                    <Property name="axis" type="int" value="1"/>
+                  </Layout>
+                </Container>
+              </SubComponents>
+            </Container>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="faunaTabPanel">
@@ -257,15 +222,9 @@
                                   </Group>
                                   <Component id="addFaunaBtn" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="faunaIconLbl" min="-2" max="-2" attributes="0"/>
-                                          <Component id="faunaDietLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="faunaDietLbl" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="faunaDietCB" alignment="1" max="32767" attributes="0"/>
-                                          <Component id="faunaIconTF" alignment="1" pref="197" max="32767" attributes="0"/>
-                                      </Group>
+                                      <Component id="faunaDietCB" min="-2" pref="197" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -300,17 +259,12 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="faunaIconLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="faunaIconTF" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="faunaDietCB" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="faunaDietLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="addFaunaBtn" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="262" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="296" max="32767" attributes="0"/>
                           </Group>
                           <Component id="faunaListPanel" alignment="0" max="32767" attributes="0"/>
                       </Group>
@@ -326,9 +280,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="faunaNameTF">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="faunaNameTFActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="addFaunaLbl">
               <Properties>
@@ -341,9 +292,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="faunaNomenclatureTF">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="faunaNomenclatureTFActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="faunaDescriptionLbl">
               <Properties>
@@ -351,19 +299,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="faunaDescriptionTF">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="faunaDescriptionTFActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="faunaIconLbl">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Icon"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="faunaIconTF">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="faunaIconTFActionPerformed"/>
-              </Events>
             </Component>
             <Container class="javax.swing.JPanel" name="faunaListPanel">
               <Properties>

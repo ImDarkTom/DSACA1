@@ -11,9 +11,8 @@ package dsaca1.models;
 public class FloraSpecies extends Species implements Comparable<FloraSpecies> {
     String growthForm;
        
-    public FloraSpecies(String name, String nomenclature, String description, String icon, String growthForm) {
-        super(name, nomenclature, description, icon);
-        
+    public FloraSpecies(String name, String nomenclature, String description, String growthForm) {
+        super(name, nomenclature, description);
         this.growthForm = growthForm;
     }
     
