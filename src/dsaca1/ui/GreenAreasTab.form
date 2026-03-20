@@ -21,7 +21,7 @@
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Component id="greenAreaListScrollPane" alignment="1" pref="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="greenAreaDeselectBtn" min="-2" max="-2" attributes="0"/>
+                      <Component id="deselectBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -30,31 +30,31 @@
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="greenAreaNameLbl" min="-2" max="-2" attributes="0"/>
+                              <Component id="nameLbl" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="greenAreaNameTF" max="32767" attributes="0"/>
+                              <Component id="nameTF" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="greenAreaFloraListScroll" alignment="0" min="-2" pref="202" max="-2" attributes="0"/>
-                                  <Component id="greenAreaFloraLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="floraListScrollPane" alignment="0" min="-2" pref="202" max="-2" attributes="0"/>
+                                  <Component id="floraLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="greenAreaFaunaLbl" min="-2" max="-2" attributes="0"/>
+                                      <Component id="faunaLbl" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="greenAreaFaunaListScroll" alignment="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="faunaListScrollPane" alignment="0" pref="203" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="addGreenAreaBtn" min="-2" max="-2" attributes="0"/>
+                      <Component id="addBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="deleteGreenAreaBtn" min="-2" max="-2" attributes="0"/>
+                      <Component id="deleteBtn" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -68,27 +68,27 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="greenAreaNameLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="greenAreaNameTF" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="nameLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="nameTF" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="greenAreaFloraLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="greenAreaFaunaLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="floraLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="faunaLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="greenAreaFloraListScroll" alignment="0" max="32767" attributes="0"/>
-                          <Component id="greenAreaFaunaListScroll" alignment="0" pref="201" max="32767" attributes="0"/>
+                          <Component id="floraListScrollPane" alignment="0" max="32767" attributes="0"/>
+                          <Component id="faunaListScrollPane" alignment="0" pref="212" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="greenAreaListScrollPane" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="greenAreaDeselectBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="deleteGreenAreaBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="addGreenAreaBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="deselectBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="deleteBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="addBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -118,39 +118,39 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="greenAreaDeselectBtn">
+    <Component class="javax.swing.JButton" name="deselectBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Deselect"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="greenAreaDeselectBtnActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deselectBtnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="deleteGreenAreaBtn">
+    <Component class="javax.swing.JButton" name="deleteBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Delete"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteGreenAreaBtnActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteBtnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="greenAreaNameLbl">
+    <Component class="javax.swing.JLabel" name="nameLbl">
       <Properties>
         <Property name="text" type="java.lang.String" value="Name"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="greenAreaNameTF">
+    <Component class="javax.swing.JTextField" name="nameTF">
     </Component>
-    <Container class="javax.swing.JScrollPane" name="greenAreaFloraListScroll">
+    <Container class="javax.swing.JScrollPane" name="floraListScrollPane">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
       </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JList" name="greenAreaFloraList">
+        <Component class="javax.swing.JList" name="floraListList">
           <Properties>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
               <StringArray count="0"/>
@@ -162,24 +162,24 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="greenAreaFloraLbl">
+    <Component class="javax.swing.JLabel" name="floraLbl">
       <Properties>
         <Property name="text" type="java.lang.String" value="Flora"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="greenAreaFaunaLbl">
+    <Component class="javax.swing.JLabel" name="faunaLbl">
       <Properties>
         <Property name="text" type="java.lang.String" value="Fauna"/>
       </Properties>
     </Component>
-    <Container class="javax.swing.JScrollPane" name="greenAreaFaunaListScroll">
+    <Container class="javax.swing.JScrollPane" name="faunaListScrollPane">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
       </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JList" name="greenAreaFaunaList">
+        <Component class="javax.swing.JList" name="faunaListList">
           <Properties>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
               <StringArray count="0"/>
@@ -191,12 +191,12 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="addGreenAreaBtn">
+    <Component class="javax.swing.JButton" name="addBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Add"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addGreenAreaBtnActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addBtnActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

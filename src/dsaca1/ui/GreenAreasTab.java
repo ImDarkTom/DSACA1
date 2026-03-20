@@ -35,13 +35,14 @@ public class GreenAreasTab extends javax.swing.JPanel {
     }
     
     public void setFloraListModel(SLList<FloraSpecies> floraList) {
-        greenAreaFloraList.clearSelection();
-        greenAreaFloraList.setModel(convertSLLToListModel(floraList));
+        floraListList.clearSelection();
+        floraListList.setModel(convertSLLToListModel(floraList));
     }
     
     public void setFaunaListModel(SLList<FaunaSpecies> faunaList) {
-        greenAreaFaunaList.clearSelection();
-        greenAreaFaunaList.setModel(convertSLLToListModel(faunaList));
+        faunaListList.clearSelection();
+        
+        faunaListList.setModel(convertSLLToListModel(faunaList));
     }
     
     
@@ -101,41 +102,41 @@ public class GreenAreasTab extends javax.swing.JPanel {
 
         greenAreaListScrollPane = new javax.swing.JScrollPane();
         greenAreasList = new javax.swing.JList<>();
-        greenAreaDeselectBtn = new javax.swing.JButton();
-        deleteGreenAreaBtn = new javax.swing.JButton();
-        greenAreaNameLbl = new javax.swing.JLabel();
-        greenAreaNameTF = new javax.swing.JTextField();
-        greenAreaFloraListScroll = new javax.swing.JScrollPane();
-        greenAreaFloraList = new javax.swing.JList<>();
-        greenAreaFloraLbl = new javax.swing.JLabel();
-        greenAreaFaunaLbl = new javax.swing.JLabel();
-        greenAreaFaunaListScroll = new javax.swing.JScrollPane();
-        greenAreaFaunaList = new javax.swing.JList<>();
-        addGreenAreaBtn = new javax.swing.JButton();
+        deselectBtn = new javax.swing.JButton();
+        deleteBtn = new javax.swing.JButton();
+        nameLbl = new javax.swing.JLabel();
+        nameTF = new javax.swing.JTextField();
+        floraListScrollPane = new javax.swing.JScrollPane();
+        floraListList = new javax.swing.JList<>();
+        floraLbl = new javax.swing.JLabel();
+        faunaLbl = new javax.swing.JLabel();
+        faunaListScrollPane = new javax.swing.JScrollPane();
+        faunaListList = new javax.swing.JList<>();
+        addBtn = new javax.swing.JButton();
 
         greenAreasList.addListSelectionListener(this::greenAreasListValueChanged);
         greenAreaListScrollPane.setViewportView(greenAreasList);
 
-        greenAreaDeselectBtn.setText("Deselect");
-        greenAreaDeselectBtn.setEnabled(false);
-        greenAreaDeselectBtn.addActionListener(this::greenAreaDeselectBtnActionPerformed);
+        deselectBtn.setText("Deselect");
+        deselectBtn.setEnabled(false);
+        deselectBtn.addActionListener(this::deselectBtnActionPerformed);
 
-        deleteGreenAreaBtn.setText("Delete");
-        deleteGreenAreaBtn.setEnabled(false);
-        deleteGreenAreaBtn.addActionListener(this::deleteGreenAreaBtnActionPerformed);
+        deleteBtn.setText("Delete");
+        deleteBtn.setEnabled(false);
+        deleteBtn.addActionListener(this::deleteBtnActionPerformed);
 
-        greenAreaNameLbl.setText("Name");
+        nameLbl.setText("Name");
 
-        greenAreaFloraListScroll.setViewportView(greenAreaFloraList);
+        floraListScrollPane.setViewportView(floraListList);
 
-        greenAreaFloraLbl.setText("Flora");
+        floraLbl.setText("Flora");
 
-        greenAreaFaunaLbl.setText("Fauna");
+        faunaLbl.setText("Fauna");
 
-        greenAreaFaunaListScroll.setViewportView(greenAreaFaunaList);
+        faunaListScrollPane.setViewportView(faunaListList);
 
-        addGreenAreaBtn.setText("Add");
-        addGreenAreaBtn.addActionListener(this::addGreenAreaBtnActionPerformed);
+        addBtn.setText("Add");
+        addBtn.addActionListener(this::addBtnActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -146,31 +147,31 @@ public class GreenAreasTab extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(greenAreaListScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(greenAreaDeselectBtn)
+                        .addComponent(deselectBtn)
                         .addGap(78, 78, 78)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(greenAreaNameLbl)
+                                .addComponent(nameLbl)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(greenAreaNameTF))
+                                .addComponent(nameTF))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(greenAreaFloraListScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(greenAreaFloraLbl))
+                                    .addComponent(floraListScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(floraLbl))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(greenAreaFaunaLbl)
+                                        .addComponent(faunaLbl)
                                         .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(greenAreaFaunaListScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))))
+                                    .addComponent(faunaListScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(addGreenAreaBtn)
+                        .addComponent(addBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(deleteGreenAreaBtn)))
+                        .addComponent(deleteBtn)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -180,22 +181,22 @@ public class GreenAreasTab extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(greenAreaNameLbl)
-                            .addComponent(greenAreaNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(nameLbl)
+                            .addComponent(nameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(greenAreaFloraLbl)
-                            .addComponent(greenAreaFaunaLbl))
+                            .addComponent(floraLbl)
+                            .addComponent(faunaLbl))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(greenAreaFloraListScroll)
-                            .addComponent(greenAreaFaunaListScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)))
+                            .addComponent(floraListScrollPane)
+                            .addComponent(faunaListScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)))
                     .addComponent(greenAreaListScrollPane))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(greenAreaDeselectBtn)
-                    .addComponent(deleteGreenAreaBtn)
-                    .addComponent(addGreenAreaBtn))
+                    .addComponent(deselectBtn)
+                    .addComponent(deleteBtn)
+                    .addComponent(addBtn))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -203,35 +204,35 @@ public class GreenAreasTab extends javax.swing.JPanel {
     private void greenAreasListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_greenAreasListValueChanged
         GreenArea selected = greenAreasList.getSelectedValue();
         if (selected == null) {
-            greenAreaNameTF.setText("");
+            nameTF.setText("");
             // editGreenAreaBtn.setEnabled(false);
-            deleteGreenAreaBtn.setEnabled(false);
-            addGreenAreaBtn.setEnabled(true);
+            deleteBtn.setEnabled(false);
+            addBtn.setEnabled(true);
 
-            greenAreaFaunaList.clearSelection();
-            greenAreaFloraList.clearSelection();
+            faunaListList.clearSelection();
+            floraListList.clearSelection();
 
-            greenAreaDeselectBtn.setEnabled(false);
+            deselectBtn.setEnabled(false);
             return;
         }
 
-        greenAreaNameTF.setText(selected.getName());
+        nameTF.setText(selected.getName());
         // editGreenAreaBtn.setEnabled(true);
-        deleteGreenAreaBtn.setEnabled(true);
-        addGreenAreaBtn.setEnabled(false);
-        greenAreaDeselectBtn.setEnabled(true);
+        deleteBtn.setEnabled(true);
+        addBtn.setEnabled(false);
+        deselectBtn.setEnabled(true);
 
-        greenAreaFloraList.setSelectedIndices(indicesInModelThatAppearInDLList(greenAreaFloraList.getModel(), selected.getFlora()));
-        greenAreaFaunaList.setSelectedIndices(indicesInModelThatAppearInDLList(greenAreaFaunaList.getModel(), selected.getFauna()));
+        floraListList.setSelectedIndices(indicesInModelThatAppearInDLList(floraListList.getModel(), selected.getFlora()));
+        faunaListList.setSelectedIndices(indicesInModelThatAppearInDLList(faunaListList.getModel(), selected.getFauna()));
     }//GEN-LAST:event_greenAreasListValueChanged
 
-    private void greenAreaDeselectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_greenAreaDeselectBtnActionPerformed
+    private void deselectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deselectBtnActionPerformed
         if (greenAreasList.getSelectedIndex() != -1) {
             greenAreasList.clearSelection();
         }
-    }//GEN-LAST:event_greenAreaDeselectBtnActionPerformed
+    }//GEN-LAST:event_deselectBtnActionPerformed
 
-    private void deleteGreenAreaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteGreenAreaBtnActionPerformed
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         GreenArea selected = greenAreasList.getSelectedValue();
         int selectedIndex = AppState.getGreenAreas().indexOf(selected);
         if (selectedIndex != -1) {
@@ -239,39 +240,39 @@ public class GreenAreasTab extends javax.swing.JPanel {
         }
 
         refreshGreenAreasList();
-    }//GEN-LAST:event_deleteGreenAreaBtnActionPerformed
+    }//GEN-LAST:event_deleteBtnActionPerformed
 
-    private void addGreenAreaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addGreenAreaBtnActionPerformed
-        String toBeAdded = greenAreaNameTF.getText();
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        String toBeAdded = nameTF.getText();
         if (toBeAdded.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Name cannot be blank.");
             return;
         }
 
-        DLList<FloraSpecies> selectedFlora = toDLList(greenAreaFloraList.getSelectedValuesList());
-        DLList<FaunaSpecies> selectedFauna = toDLList(greenAreaFaunaList.getSelectedValuesList());
+        DLList<FloraSpecies> selectedFlora = toDLList(floraListList.getSelectedValuesList());
+        DLList<FaunaSpecies> selectedFauna = toDLList(faunaListList.getSelectedValuesList());
 
-        GreenArea created = new GreenArea(greenAreaNameTF.getText(), selectedFlora, selectedFauna);
+        GreenArea created = new GreenArea(nameTF.getText(), selectedFlora, selectedFauna);
         AppState.getGreenAreas().add(created);
         refreshGreenAreasList();
 
         greenAreasList.setSelectedValue(created, true);
-    }//GEN-LAST:event_addGreenAreaBtnActionPerformed
+    }//GEN-LAST:event_addBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addGreenAreaBtn;
-    private javax.swing.JButton deleteGreenAreaBtn;
-    private javax.swing.JButton greenAreaDeselectBtn;
-    private javax.swing.JLabel greenAreaFaunaLbl;
-    private javax.swing.JList<FaunaSpecies> greenAreaFaunaList;
-    private javax.swing.JScrollPane greenAreaFaunaListScroll;
-    private javax.swing.JLabel greenAreaFloraLbl;
-    private javax.swing.JList<FloraSpecies> greenAreaFloraList;
-    private javax.swing.JScrollPane greenAreaFloraListScroll;
+    private javax.swing.JButton addBtn;
+    private javax.swing.JButton deleteBtn;
+    private javax.swing.JButton deselectBtn;
+    private javax.swing.JLabel faunaLbl;
+    private javax.swing.JList<FaunaSpecies> faunaListList;
+    private javax.swing.JScrollPane faunaListScrollPane;
+    private javax.swing.JLabel floraLbl;
+    private javax.swing.JList<FloraSpecies> floraListList;
+    private javax.swing.JScrollPane floraListScrollPane;
     private javax.swing.JScrollPane greenAreaListScrollPane;
-    private javax.swing.JLabel greenAreaNameLbl;
-    private javax.swing.JTextField greenAreaNameTF;
     private javax.swing.JList<GreenArea> greenAreasList;
+    private javax.swing.JLabel nameLbl;
+    private javax.swing.JTextField nameTF;
     // End of variables declaration//GEN-END:variables
 }
