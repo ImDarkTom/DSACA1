@@ -63,7 +63,7 @@ public class AppState {
             }
         }
         
-        greenAreas.add(new GreenArea("Pheonix Park", pheonixParkFlora, pheonixParkFauna));
+        greenAreas.add(new GreenArea("Phoenix Park", pheonixParkFlora, pheonixParkFauna));
         
         
         
