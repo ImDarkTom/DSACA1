@@ -6,6 +6,7 @@
 
 package dsaca1.tests;
 
+import dsaca1.tests.dstests.BTTests;
 import dsaca1.tests.dstests.DLLTests;
 import dsaca1.tests.dstests.SLLTests;
 
@@ -15,11 +16,16 @@ import dsaca1.tests.dstests.SLLTests;
  */
 public class AppTests {
     public static void runTests() {
+        // Run tests to make sure the ADTs work
+        
         DLLTests dLLTests = new DLLTests();
         dLLTests.run();
         
         SLLTests sLLTests = new SLLTests();
         sLLTests.run();
+        
+        BTTests bTTests = new BTTests();
+        bTTests.run();
     }
 }
 

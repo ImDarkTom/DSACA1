@@ -47,4 +47,9 @@ public class BTNode<T> {
     public boolean isExternal() {
         return (leftChild == null) && (rightChild == null);
     }
+
+    @Override
+    public String toString() {
+        return element.toString();
+    }
 }

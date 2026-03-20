@@ -27,6 +27,10 @@ public class BinaryTree<T extends Comparable<T>> implements BinarySearchTreeInte
     // using element datatype
     @Override
     public void insert(T elem) {
+        if (elem == null) {
+            throw new NullPointerException("Inserted item cannot be null.");
+        }
+
         insertNode(root, new BTNode<>(elem));
     }
     
@@ -62,8 +66,16 @@ public class BinaryTree<T extends Comparable<T>> implements BinarySearchTreeInte
     }
     
     // Searching the tree
+    public BTNode<T> search(T elem) {
+        return search(elem, root);
+    }
+    
     @Override
-    public BTNode search(T elem, BTNode<T> startNode) {
+    public BTNode<T> search(T elem, BTNode<T> startNode) {
+        if (elem == null) {
+            throw new NullPointerException("Item to search for cannot be null.");
+        }
+        
         if (startNode == null) {
             return null;
         }
@@ -89,7 +101,7 @@ public class BinaryTree<T extends Comparable<T>> implements BinarySearchTreeInte
         return inOrderTraversal(root);
     }
 
-    public SLList<T> inOrderTraversal(BTNode startNode) {
+    public SLList<T> inOrderTraversal(BTNode<T> startNode) {
         SLList<T> list = new SLList<>();
         inOrderTraversalHelper(startNode, list);
         return list;
@@ -113,6 +125,23 @@ public class BinaryTree<T extends Comparable<T>> implements BinarySearchTreeInte
 
     @Override
     public void update(T oldElem, T newElem) {
+        if (oldElem == null || newElem == null) {
+            throw new IllegalArgumentException("New item or item to update cannot be null.");
+        }
+        
+        if (search(oldElem) == null) {
+            throw new IllegalArgumentException("Old value not found in tree:" + oldElem);
+        }
+        
+        if (oldElem.compareTo(newElem) == 0) {
+            // New value is same as old value
+            return;
+        }
+        
+        if (search(newElem) != null) {
+            throw new IllegalArgumentException("Duplicate value when adding to tree:" + newElem);
+        }
+        
         delete(oldElem);
         insert(newElem);
     }
@@ -121,6 +150,10 @@ public class BinaryTree<T extends Comparable<T>> implements BinarySearchTreeInte
     // Deleting an elem
     @Override
     public void delete(T elem) {
+        if (elem == null) {
+            throw new NullPointerException("Item to delete cannot be null.");
+        }
+        
         root = deleteHelper(elem, root);
     }
     
@@ -169,12 +202,17 @@ public class BinaryTree<T extends Comparable<T>> implements BinarySearchTreeInte
         return startNode;
     }
     
-    // Helper function used when deleting
+    // Helper function used when deleting with two children
     private BTNode<T> findMin(BTNode<T> node) {
         while (node.getLeftChild() != null) {
             node = node.getLeftChild();
         }
         
         return node;
+    }
+
+    @Override
+    public String toString() {
+        return inOrderTraversal().toString();
     }
 }
